@@ -1203,25 +1203,117 @@ body {
 
 /* --- Responsive --- */
 @media (max-width: 767px) {
-  .key-metrics {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  /* --- Layout & Hero --- */
+  .hero-bg {
+    height: 200px;
+    position: absolute; /* Not fixed on mobile to save GPU */
+  }
+
+  .page-wrapper {
+    padding-top: 10px;
+    padding-bottom: 80px; /* Space for sticky CTA */
+  }
+
+  .profile-card {
+    padding: 16px;
+    gap: 20px;
+    border-radius: 14px;
+  }
+
+  /* --- Company Identity --- */
+  .company-identity {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
   }
   .company-name {
-    font-size: 22px;
+    font-size: 24px;
+    line-height: 1.2;
   }
-  .service-row {
+  .company-meta {
+    align-items: center;
+  }
+
+  /* --- Trust Strip: Smart Wrap --- */
+  .trust-strip {
+    justify-content: center;
+    gap: 6px;
+  }
+  .trust-pill {
+    padding: 6px 12px;
+    min-width: 70px;
+    flex: 1 1 30%; /* 3 per row roughly */
+  }
+
+  /* --- Metrics: 2-col --- */
+  .key-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+    margin: 16px 0;
+  }
+  .metric-label {
+    font-size: 10px;
+  }
+  .metric-value {
+    font-size: 13px;
+  }
+
+  /* --- Buttons & CTAs --- */
+  .inline-cta {
     flex-direction: column;
-    gap: 8px;
+    width: 100%;
   }
-  .service-row__label {
-    min-width: unset;
+  .inline-cta button,
+  .inline-cta a,
+  .inline-cta .btn-share {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Tabs: Segmented Control Fix --- */
+  .tabs-nav {
+    grid-template-columns: repeat(3, 1fr); /* 2 rows for 6 tabs */
+    gap: 4px;
   }
   .tab-btn {
-    font-size: 13px;
-    padding: 6px 8px;
+    font-size: 12px;
+    padding: 10px 4px;
+    min-height: 44px;
+  }
+
+  /* --- Bento Grid --- */
+  .bento-grid {
+    gap: 16px;
+    padding-top: 24px;
+  }
+  .bento-card {
+    padding: 16px;
+  }
+
+  /* --- Service Area --- */
+  .map-container {
+    height: 220px;
+  }
+
+  /* --- Sticky CTA --- */
+  .sticky-cta {
+    padding: 10px 16px;
+  }
+  .sticky-cta__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+  .sticky-cta__actions .btn-primary--sm,
+  .sticky-cta__actions .btn-secondary--sm {
+    padding: 10px 4px;
+    font-size: 12px;
+    margin: 0;
   }
 }
+
 /* --- Utility / Extracted Inline Styles --- */
 .hero-scroll-container {
   height: 300px;
