@@ -643,7 +643,7 @@ function renderAvailabilityTab(d) {
         .map((s) => {
           const isToday = s.day === today;
           return `
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; border-radius:8px; font-size:13px; ${isToday ? "background:rgba(0,113,227,0.08); border:1px solid rgba(0,113,227,0.15);" : "background:var(--bg-subtle); border:1px solid var(--border-light);"}">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 10px; border-radius:6px; font-size:13px; ${isToday ? "background:rgba(0,113,227,0.08); border:1px solid rgba(0,113,227,0.15);" : "background:var(--bg-subtle); border:1px solid var(--border-light);"}">
             <span style="font-weight:${isToday ? "700" : "500"}; color:var(--text-primary);">${s.day}${isToday ? " (Today)" : ""}</span>
             <span style="font-size:12px; color:${isToday ? "var(--accent)" : "var(--text-secondary)"}; font-weight:500;">${s.hours}</span>
           </div>

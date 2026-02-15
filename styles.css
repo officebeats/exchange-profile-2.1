@@ -1315,9 +1315,9 @@ body {
 
 /* --- Utility / Extracted Inline Styles --- */
 .hero-scroll-container {
-  height: 300px;
+  max-height: 400px; /* Allow more height but keep scroll for safety */
   overflow-y: auto;
-  padding: 16px;
+  padding: 12px;
 }
 
 .hero-chips-container {
