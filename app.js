@@ -1208,7 +1208,7 @@ function renderOrgCards(containerId, items) {
     .join("");
 }
 
-// ── Render: Compliance Layer (v2.0 — COI + Bond + Business Codes) ──
+// ── Render: Compliance Layer (v2.1 — Coverage Cards + Codes) ──
 function renderComplianceLayer(d) {
   const c = $("#complianceContent");
   if (!d.compliance) return;
@@ -1216,68 +1216,61 @@ function renderComplianceLayer(d) {
   const limits = d.compliance.coi.limits;
   const bond = d.compliance.fidelityBond;
 
+  const coverageItems = [
+    { label: "General Liability", value: limits.generalLiability, icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', color: "var(--success)" },
+    { label: "Auto Liability", value: limits.autoLiability, icon: '<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>', color: "var(--accent)" },
+    { label: "Umbrella", value: limits.umbrella, icon: '<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>', color: "#8b5cf6" },
+    { label: "Workers Comp", value: limits.workersComp, icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', color: "#f59e0b" },
+  ];
+
   c.innerHTML = `
     <div style="display:flex; flex-direction:column; gap:20px;">
-      <!-- COI & Limits -->
-      <div>
-        <div class="coi-preview" style="margin-bottom:12px;">
-          <div class="coi-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+
+      <!-- Coverage Cards Grid -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        ${coverageItems.map(item => `
+          <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="${item.color}" stroke-width="2" width="18" height="18">${item.icon}</svg>
+              <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">${item.label}</span>
+            </div>
+            <div style="font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:-0.5px; line-height:1;">${item.value}</div>
           </div>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text-primary);">Certificate of Insurance</div>
-            <div style="font-size:12px; color:var(--text-muted);">Verified Policy On File</div>
-          </div>
-        </div>
-        
-        <div class="coi-limits">
-          <div class="limit-item"><span class="limit-label">General Liability</span><span class="limit-val">${limits.generalLiability}</span></div>
-          <div class="limit-item"><span class="limit-label">Auto Liability</span><span class="limit-val">${limits.autoLiability}</span></div>
-          <div class="limit-item"><span class="limit-label">Umbrella</span><span class="limit-val">${limits.umbrella}</span></div>
-          <div class="limit-item"><span class="limit-label">Workers Comp</span><span class="limit-val">${limits.workersComp}</span></div>
-        </div>
+        `).join("")}
       </div>
 
-      <!-- Fidelity/Janitorial Bond (MOVED from Trust & Safety) -->
+      <!-- Fidelity Bond -->
       <div style="padding:16px; background:rgba(0,113,227,0.04); border:1px solid rgba(0,113,227,0.1); border-radius:12px;">
         <div style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">${bond?.type || "Fidelity Bond"}</div>
         <div style="font-size:24px; font-weight:700; color:var(--text-primary);">${bond?.amount || "—"}</div>
         <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Bonded and Insured for commercial contract protection</div>
       </div>
 
-      <!-- Business Codes Section -->
+      <!-- Business Codes -->
       <div style="border-top:1px solid var(--border-light); padding-top:16px;">
         <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px; text-transform:uppercase;">Business Codes</div>
-        
+
         <div style="margin-bottom:16px;">
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NAICS Codes (Tax & Marketplaces)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.naics
-              .map(
-                (n) => `
+            ${d.compliance.naics.map(n => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
-                <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span> 
+                <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}${n.primary ? " ⭐" : ""}</span>
               </div>
-            `,
-              )
-              .join("")}
+            `).join("")}
           </div>
         </div>
 
         <div>
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NIGP Codes (Public Sector Procurement)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.nigp
-              .map(
-                (n) => `
+            ${d.compliance.nigp.map(n => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
-                <span style="font-family:monospace; background:rgba(0,0,0,0.03); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span> 
+                <span style="font-family:monospace; background:rgba(0,0,0,0.03); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}</span>
               </div>
-            `,
-              )
-              .join("")}
+            `).join("")}
           </div>
         </div>
       </div>
