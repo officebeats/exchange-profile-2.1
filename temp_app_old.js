@@ -168,13 +168,13 @@ const companyData = {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
-      logo: "ieha_logo.png",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
-      logo: "ieha_logo.png",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
     },
   ],
   // ── v2.0 Data Enhancements ──
@@ -1033,13 +1033,7 @@ function renderVideo(d) {
         style="width:100%; height:100%; flex:1;"
         allowfullscreen>
       </iframe>
-      <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; filter: brightness(0.6);" />
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48" style="color:var(--bg-subtle); opacity:0.9;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-          <div style="color:white; font-size:16px; font-weight:700; text-shadow:0 2px 4px rgba(0,0,0,0.8);">Unlock Premium to view</div>
-        </div>
-      </div>
+      <img class="video-fallback-img" src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; display:none;" />
     </div>
   `;
 }
@@ -1417,20 +1411,18 @@ function renderCertTiles(containerId, items) {
     return `https://icon.horse/icon/${domain}.org`;
   };
 
-  c.className = "card-list";
+  c.className = "cert-grid";
   c.innerHTML = items
     .map((item) => `
-      <div style="display:flex; align-items:center; gap:20px; padding:18px; background:var(--cert-card-bg); border-radius:14px; border:1px solid var(--cert-card-border); margin-bottom:12px; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s; cursor:default;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'; this.style.borderColor='var(--accent)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='var(--cert-card-border)';">
-        <div style="width:64px; height:64px; flex-shrink:0; background:white; border:1px solid var(--border-light); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:4px;">
-           <img src="${logoFor(item)}" alt="${item.name}" style="max-width:100%; max-height:100%; object-fit:contain; filter:none;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-           <div style="display:none; width:100%; height:100%; background:var(--accent); color:white; font-size:18px; font-weight:bold; align-items:center; justify-content:center; border-radius:8px;">
-             ${item.name.charAt(0)}
-           </div>
+      <div class="cert-tile" title="${item.summary || item.name}">
+        <div class="cert-tile__logo">
+          <img src="${logoFor(item)}" alt="${item.name}"
+               onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="cert-tile__initials" style="display:none;">
+            ${item.name.split(/[^A-Z0-9]/)[0] || item.name.charAt(0)}
+          </div>
         </div>
-        <div style="flex:1; min-width:0;">
-          <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:6px; letter-spacing:-0.2px;">${item.name}</div>
-          <div style="font-size:13px; color:var(--text-secondary); line-height:1.4;">${item.summary}</div>
-        </div>
+        <div class="cert-tile__name">${item.name}</div>
       </div>
     `)
     .join("");
