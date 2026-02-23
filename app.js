@@ -585,16 +585,6 @@ function renderServices(d) {
     `;
   }
 
-  if (d.services.unionLabor) {
-    html += `
-      <div style="display:flex; align-items:center; gap:8px; padding-top:16px; border-top:1px solid var(--border-light);">
-        <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Labor Status:</div>
-        <span class="pill" style="background:rgba(52, 199, 89, 0.1); color:var(--success); border-color:transparent; font-weight:600;">
-          ${d.services.unionLabor}
-        </span>
-      </div>
-    `;
-  }
   c.innerHTML = html;
 }
 
@@ -1103,10 +1093,16 @@ function renderTrustLayer(d) {
             ${umbrella}
           </div>
         </div>
-        <div class="trust-item-box premium-feature" style="padding:16px;">
+        <div class="trust-item-box" style="padding:16px;">
           <div class="trust-item-label">Specialized Training</div>
           <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${d.compliance.specializedTraining ? "Certified" : "No"}
+          </div>
+        </div>
+        <div class="trust-item-box" style="padding:16px;">
+          <div class="trust-item-label">Labor Status</div>
+          <div class="trust-item-value" style="color:var(--success); font-weight:800;">
+            ${d.services.unionLabor || "Non-Union"}
           </div>
         </div>
       </div>
