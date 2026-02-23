@@ -78,26 +78,73 @@ const companyData = {
 
   associations: [
     {
-      name: "International Sanitary Supply Association (ISSA)",
+      name: "ISSA (The Association for Cleaning & Facility Solutions)",
       summary:
-        "The leading trade association for the cleaning industry worldwide.",
-      logo: "https://logo.clearbit.com/issa.com",
+        "Flagship trade body for the cleaning industry; events, standards, training, and credibility with buyers worldwide.",
+      logo: "https://icon.horse/icon/issa.com",
     },
     {
-      name: "Building Service Contractors Association (BSCAI)",
-      summary: "Represents a network of over 1,000 member companies worldwide.",
-      logo: "https://logo.clearbit.com/bscai.org",
-    },
-    {
-      name: "IICRC Certified",
+      name: "BSCAI (Building Service Contractors Association International)",
       summary:
-        "Non-profit certification for the inspection and cleaning industries.",
-      logo: "https://logo.clearbit.com/iicrc.org",
+        "Dedicated to contract cleaners; peer network, best practices, and a recognized member logo you can use in marketing.",
+      logo: "https://icon.horse/icon/bscai.org",
     },
     {
       name: "IFMA",
-      summary: "International Facility Management Association member.",
-      logo: "https://logo.clearbit.com/ifma.org",
+      summary:
+        "Access to decision‑makers, insight into how FMs evaluate and manage janitorial vendors.",
+      logo: "https://icon.horse/icon/ifma.org",
+    },
+    {
+      name: "BOMA",
+      summary:
+        "Standards and relationships right where janitorial contracts originate.",
+      logo: "https://icon.horse/icon/boma.org",
+    },
+    {
+      name: "CIRI",
+      summary:
+        "Differentiates you with evidence‑based “cleaning for health” story.",
+      logo: "https://icon.horse/icon/ciriscience.org",
+    },
+    {
+      name: "IEHA (ISSA division)",
+      summary:
+        "Understand expectations and language of healthcare/hospitality buyers.",
+      logo: "ieha_logo.png",
+    },
+    {
+      name: "IICRC",
+      summary:
+        "Credibility and specs coverage on carpets, floors, restoration.",
+      logo: "https://icon.horse/icon/iicrc.org",
+    },
+    {
+      name: "IJCSA",
+      summary:
+        "Practical business resources, directory visibility, small‑firm friendly.",
+      logo: "https://icon.horse/icon/ijcsa.org",
+    },
+    {
+      name: "ACI (American Cleaning Institute)",
+      summary:
+        "Regulatory/technical backing for chemistry, disinfection, sustainability claims.",
+      logo: "https://icon.horse/icon/cleaninginstitute.org",
+    },
+    {
+      name: "RIA (Restoration Industry Association)",
+      summary: "Opens up higher‑margin restoration/emergency work channels.",
+      logo: "https://icon.horse/icon/restorationindustry.org",
+    },
+    {
+      name: "PWNA (Power Washers of North America)",
+      summary: "Structure and credibility for pressure‑washing services.",
+      logo: "https://icon.horse/icon/pwna.org",
+    },
+    {
+      name: "IWCA (International Window Cleaning Association)",
+      summary: "Safety and quality standards for a common janitorial add‑on.",
+      logo: "https://icon.horse/icon/iwca.org",
     },
   ],
 
@@ -336,11 +383,6 @@ function renderHeader(d) {
     }
     html += `</div>`;
 
-    if (d.services?.unionLabor) {
-      html += `<div style="display:flex; gap:6px; flex-wrap:wrap;">`;
-      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">${d.services.unionLabor}</div>`;
-      html += `</div>`;
-    }
     html += `</div>`;
     badges.innerHTML = html;
   }
@@ -568,7 +610,10 @@ function renderDocuments(d) {
 
     return `
       <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid rgba(142, 142, 147, 0.15);">
-        <span style="font-size:14px; font-weight:500; color:var(--text-primary);">${doc.name}</span>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--text-muted);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span style="font-size:14px; font-weight:500; color:var(--text-primary);">${doc.name}</span>
+        </div>
         ${status}
       </div>
     `;
@@ -972,21 +1017,29 @@ function renderVideo(d) {
   if (!c || !d.video) return;
 
   const getAutoplayUrl = (url) => {
-    if (url.includes("?")) return url + "&autoplay=1&mute=1&loop=1";
-    return url + "?autoplay=1&mute=1&loop=1";
+    let newUrl = url;
+    if (newUrl.includes("?"))
+      newUrl += "&autoplay=1&loop=1&enablejsapi=1";
+    else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
+    return newUrl;
   };
 
   c.innerHTML = `
-    <iframe src="${getAutoplayUrl(d.video.url)}" 
-      title="${d.video.title}" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
+    <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
+      <iframe class="video-iframe" id="heroVideoIframe" src="${getAutoplayUrl(d.video.url)}" 
+        title="${d.video.title}" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        style="width:100%; height:100%; flex:1;"
+        allowfullscreen>
+      </iframe>
+      <img class="video-fallback-img" src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; display:none;" />
+    </div>
   `;
 }
 
 // ── Render: Trust & Safety (v2.0 — EMR + Background Checks + Security Clearance) ──
+// ── Render: Trust & Safety (v2.0) ──
 function renderTrustLayer(d) {
   const c = $("#trustContent");
   if (!c || !d.compliance) return;
@@ -994,6 +1047,7 @@ function renderTrustLayer(d) {
   const emr = d.compliance.emr[0];
   const bgChecks = d.compliance.backgroundChecks;
   const clearance = d.compliance.securityClearance;
+  const umbrella = d.compliance.coi.limits.umbrella;
 
   // EMR Score styling logic
   const emrFloat = parseFloat(emr.rate);
@@ -1006,13 +1060,18 @@ function renderTrustLayer(d) {
     <div style="display:flex; flex-direction:column; gap:20px;">
       <!-- Experience Modification Rate Summary -->
       <div style="background:var(--pill-bg); padding:16px; border-radius:12px; border:1px solid var(--border-light);">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
-          <div style="font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase;">Safety Benchmark</div>
-          <div style="font-size:24px; font-weight:700; color:${emrColor}; line-height:1;">${emr.rate} <span style="font-size:12px; color:var(--text-muted); font-weight:500;">EMR</span></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+          <div>
+            <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">Safety Benchmark</div>
+            <div style="font-size:13px; color:var(--text-secondary);">Industry average is 1.0</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:24px; font-weight:800; color:${emrColor}; letter-spacing:-0.5px; line-height:1;">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
+          </div>
         </div>
         
         <!-- EMR Bar Component -->
-        <div style="position:relative; width:100%; height:8px; background:linear-gradient(to right, #34c759 40%, #ffcc00 60%, #ff3b30 100%); border-radius:4px; margin-top:8px;">
+        <div style="position:relative; width:100%; height:8px; background:linear-gradient(to right, #34c759 40%, #ffcc00 60%, #ff3b30 100%); border-radius:4px; margin-top:16px;">
           <div style="position:absolute; top:-4px; left:${emrPercent}%; transform:translateX(-50%); width:4px; height:16px; background:#000; border-radius:2px; z-index:2; border:1px solid #fff;"></div>
           <!-- Baseline marker -->
           <div style="position:absolute; top:-2px; left:50%; width:2px; height:12px; background:rgba(0,0,0,0.2); z-index:1;"></div>
@@ -1025,22 +1084,28 @@ function renderTrustLayer(d) {
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="trust-item-box">
+        <div class="trust-item-box" style="padding:16px;">
           <div class="trust-item-label">Background Checks</div>
-          <div class="trust-item-value" style="color:${bgChecks ? "var(--success)" : "var(--text-muted)"};">
-            ${bgChecks ? "Yes" : "No"}
+          <div class="trust-item-value" style="color:${bgChecks ? "var(--success)" : "var(--text-muted)"}; font-weight:800;">
+            ${bgChecks ? "Verified" : "No"}
           </div>
         </div>
-        <div class="trust-item-box">
+        <div class="trust-item-box" style="padding:16px;">
           <div class="trust-item-label">Security Clearance</div>
-          <div class="trust-item-value" style="color:${clearance?.hasClearance ? "var(--accent)" : "var(--text-muted)"};">
-            ${clearance?.hasClearance ? "Yes" : "No"}
+          <div class="trust-item-value" style="color:${clearance?.hasClearance ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
+            ${clearance?.hasClearance ? "Active" : "None"}
           </div>
         </div>
-        <div class="trust-item-box premium-feature">
+        <div class="trust-item-box premium-feature" style="padding:16px;">
+          <div class="trust-item-label">Umbrella Insurance</div>
+          <div class="trust-item-value" style="color:var(--accent); font-weight:800;">
+            ${umbrella}
+          </div>
+        </div>
+        <div class="trust-item-box premium-feature" style="padding:16px;">
           <div class="trust-item-label">Specialized Training</div>
-          <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"};">
-            ${d.compliance.specializedTraining ? "Yes" : "No"}
+          <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
+            ${d.compliance.specializedTraining ? "Certified" : "No"}
           </div>
         </div>
       </div>
@@ -1340,6 +1405,36 @@ function renderTestimonials(d) {
   `;
 }
 
+// ── Render: Certifications Tile Grid ──
+function renderCertTiles(containerId, items) {
+  const c = $("#" + containerId);
+  if (!c || !items?.length) return;
+
+  // Use icon.horse for org logos; fallback to first letter pill
+  const logoFor = (item) => {
+    if (item.logo) return item.logo;
+    const domain = item.name.toLowerCase()
+      .replace(/[^a-z0-9 ]/g, "").split(" ")[0];
+    return `https://icon.horse/icon/${domain}.org`;
+  };
+
+  c.className = "cert-grid";
+  c.innerHTML = items
+    .map((item) => `
+      <div class="cert-tile" title="${item.summary || item.name}">
+        <div class="cert-tile__logo">
+          <img src="${logoFor(item)}" alt="${item.name}"
+               onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="cert-tile__initials" style="display:none;">
+            ${item.name.split(/[^A-Z0-9]/)[0] || item.name.charAt(0)}
+          </div>
+        </div>
+        <div class="cert-tile__name">${item.name}</div>
+      </div>
+    `)
+    .join("");
+}
+
 // ── Render: Associations Grid (v2) ──
 function renderAssociationsGrid(containerId, items) {
   const c = $("#" + containerId);
@@ -1347,16 +1442,15 @@ function renderAssociationsGrid(containerId, items) {
 
   c.innerHTML = items
     .map((item) => {
-      // Hacky way to get acronym or short name
-      const match = item.name.match(/\(([^)]+)\)/);
-      const label = match
-        ? match[1]
-        : item.name
-            .split(" ")
-            .map((w) => w[0])
-            .join("")
-            .substring(0, 4);
-      return `<div class="logo-item" title="${item.name}">${label}</div>`;
+      // Try to parse short name or acronym for the title/alt or fallback visual if no logo, but we expect item.logo to exist.
+      return `
+        <div class="logo-item" title="${item.name}">
+          <div class="logo-item__img-wrapper">
+             <img src="${item.logo}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/120x60?text=${encodeURIComponent(item.name.substring(0, 10))}';">
+          </div>
+          <div class="logo-item__label">${item.name}</div>
+        </div>
+      `;
     })
     .join("");
 }
@@ -1439,28 +1533,30 @@ function renderContactDetailsTab(d) {
 
   c.innerHTML = `
     <div style="position:relative;">
-      <div style="filter:blur(5px); -webkit-filter:blur(5px); pointer-events:none; user-select:none;">
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
-          <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
-          <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
-          <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
+      <div>
+        <div class="locked-contact-wrapper">
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
+            <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
+            <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
+          </div>
         </div>
       </div>
-      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); border-radius:12px;">
+      <div class="premium-overlay" style="background:rgba(0,0,0,0.1); border-radius:12px; display:none;">
         <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
-        <a href="#" style="padding:10px 24px; background:var(--accent); color:white; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</a>
+        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</button>
       </div>
     </div>
   `;
@@ -1581,16 +1677,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderServicesBarRating(companyData);
 
   // Body Grid Renderers
-  renderWhyUs(companyData);
   renderTrustLayer(companyData);
   renderComplianceLayer(companyData);
-  renderSocialLayer(companyData);
   renderServices(companyData);
   renderDocuments(companyData);
-  renderDrip(companyData);
 
   // Lower Panels
-  renderOrgCards("certificationsContent", companyData.certifications);
+  renderCertTiles("certificationsContent", companyData.certifications);
   renderAssociationsGrid("associationsContent", companyData.associations);
 
   // Sticky CTA
@@ -1602,6 +1695,26 @@ const premiumToggle = document.getElementById("premiumToggle");
 if (premiumToggle) {
   // Check if there's a saved preference (optional, left out for simplicity - default to ON)
   premiumToggle.addEventListener("click", () => {
-    document.body.classList.toggle("premium-off");
+    const isOff = document.body.classList.toggle("premium-off");
+
+    // Video pausing/playing
+    const iframe = document.getElementById("heroVideoIframe");
+    if (iframe) {
+      if (isOff) {
+        try {
+          iframe.contentWindow.postMessage(
+            '{"event":"command","func":"pauseVideo","args":""}',
+            "*",
+          );
+        } catch (e) {}
+      } else {
+        try {
+          iframe.contentWindow.postMessage(
+            '{"event":"command","func":"playVideo","args":""}',
+            "*",
+          );
+        } catch (e) {}
+      }
+    }
   });
 }
