@@ -1018,8 +1018,7 @@ function renderVideo(d) {
 
   const getAutoplayUrl = (url) => {
     let newUrl = url;
-    if (newUrl.includes("?"))
-      newUrl += "&autoplay=1&loop=1&enablejsapi=1";
+    if (newUrl.includes("?")) newUrl += "&autoplay=1&loop=1&enablejsapi=1";
     else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
     return newUrl;
   };
@@ -1034,11 +1033,7 @@ function renderVideo(d) {
         allowfullscreen>
       </iframe>
       <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; filter: brightness(0.6);" />
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48" style="color:var(--bg-subtle); opacity:0.9;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-          <div style="color:white; font-size:16px; font-weight:700; text-shadow:0 2px 4px rgba(0,0,0,0.8);">Unlock Premium to view</div>
-        </div>
+        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover;" />
       </div>
     </div>
   `;
@@ -1223,10 +1218,30 @@ function renderComplianceLayer(d) {
   const bond = d.compliance.fidelityBond;
 
   const coverageItems = [
-    { label: "General Liability", value: limits.generalLiability, icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', color: "var(--success)" },
-    { label: "Auto Liability", value: limits.autoLiability, icon: '<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>', color: "var(--accent)" },
-    { label: "Umbrella", value: limits.umbrella, icon: '<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>', color: "#8b5cf6" },
-    { label: "Workers Comp", value: limits.workersComp, icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', color: "#f59e0b" },
+    {
+      label: "General Liability",
+      value: limits.generalLiability,
+      icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+      color: "var(--success)",
+    },
+    {
+      label: "Auto Liability",
+      value: limits.autoLiability,
+      icon: '<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+      color: "var(--accent)",
+    },
+    {
+      label: "Umbrella",
+      value: limits.umbrella,
+      icon: '<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>',
+      color: "#8b5cf6",
+    },
+    {
+      label: "Workers Comp",
+      value: limits.workersComp,
+      icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      color: "#f59e0b",
+    },
   ];
 
   c.innerHTML = `
@@ -1234,7 +1249,9 @@ function renderComplianceLayer(d) {
 
       <!-- Coverage Cards Grid -->
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        ${coverageItems.map(item => `
+        ${coverageItems
+          .map(
+            (item) => `
           <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
             <div style="display:flex; align-items:center; gap:8px;">
               <svg viewBox="0 0 24 24" fill="none" stroke="${item.color}" stroke-width="2" width="18" height="18">${item.icon}</svg>
@@ -1242,7 +1259,9 @@ function renderComplianceLayer(d) {
             </div>
             <div style="font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:-0.5px; line-height:1;">${item.value}</div>
           </div>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </div>
 
       <!-- Fidelity Bond -->
@@ -1259,24 +1278,32 @@ function renderComplianceLayer(d) {
         <div style="margin-bottom:16px;">
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NAICS Codes (Tax & Marketplaces)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.naics.map(n => `
+            ${d.compliance.naics
+              .map(
+                (n) => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
                 <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}${n.primary ? " ⭐" : ""}</span>
               </div>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </div>
         </div>
 
         <div>
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NIGP Codes (Public Sector Procurement)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.nigp.map(n => `
+            ${d.compliance.nigp
+              .map(
+                (n) => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
                 <span style="font-family:monospace; background:rgba(0,0,0,0.03); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}</span>
               </div>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </div>
         </div>
       </div>
@@ -1412,14 +1439,17 @@ function renderCertTiles(containerId, items) {
   // Use icon.horse for org logos; fallback to first letter pill
   const logoFor = (item) => {
     if (item.logo) return item.logo;
-    const domain = item.name.toLowerCase()
-      .replace(/[^a-z0-9 ]/g, "").split(" ")[0];
+    const domain = item.name
+      .toLowerCase()
+      .replace(/[^a-z0-9 ]/g, "")
+      .split(" ")[0];
     return `https://icon.horse/icon/${domain}.org`;
   };
 
   c.className = "card-list";
   c.innerHTML = items
-    .map((item) => `
+    .map(
+      (item) => `
       <div style="display:flex; align-items:center; gap:20px; padding:18px; background:var(--cert-card-bg); border-radius:14px; border:1px solid var(--cert-card-border); margin-bottom:12px; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s; cursor:default;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'; this.style.borderColor='var(--accent)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='var(--cert-card-border)';">
         <div style="width:64px; height:64px; flex-shrink:0; background:white; border:1px solid var(--border-light); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:4px;">
            <img src="${logoFor(item)}" alt="${item.name}" style="max-width:100%; max-height:100%; object-fit:contain; filter:none;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1432,7 +1462,8 @@ function renderCertTiles(containerId, items) {
           <div style="font-size:13px; color:var(--text-secondary); line-height:1.4;">${item.summary}</div>
         </div>
       </div>
-    `)
+    `,
+    )
     .join("");
 }
 
