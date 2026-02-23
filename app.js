@@ -1012,6 +1012,14 @@ function renderVideo(d) {
     else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
     return newUrl;
   };
+  const getThumbnail = (url) => {
+    const match = url.match(/embed\/([^?]+)/);
+    return match
+      ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`
+      : "https://placehold.co/800x450/111827/3b82f6?text=About+Us";
+  };
+
+  const thumbUrl = getThumbnail(d.video.url);
 
   c.innerHTML = `
     <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
@@ -1023,7 +1031,7 @@ function renderVideo(d) {
         allowfullscreen>
       </iframe>
       <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover;" />
+        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
       </div>
     </div>
   `;
