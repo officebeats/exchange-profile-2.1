@@ -168,13 +168,13 @@ const companyData = {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
-      logo: "ieha_logo.png",
+      logo: "https://icon.horse/icon/issa.com",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
-      logo: "ieha_logo.png",
+      logo: "https://icon.horse/icon/issa.com",
     },
   ],
   // ── v2.0 Data Enhancements ──
@@ -688,24 +688,24 @@ function setupMarketingKit(d) {
 
 // remove Services and Certifications tabs - replaced by direct grid sections
 
-// ── Render: Contact Tab (Hero — Blurred) ──
+// ── Render: Contact Tab (Hero) ──
 function renderContactTab(d) {
   const c = document.getElementById("heroContactContent");
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div style="position:relative;">
-      <div style="filter:blur(5px); -webkit-filter:blur(5px); pointer-events:none; user-select:none;">
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+    <div class="premium-feature" style="width: 100%; height: 100%;">
+      <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
           <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
           <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
         </div>
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
           <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
         </div>
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
           <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
         </div>
@@ -714,9 +714,12 @@ function renderContactTab(d) {
           <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
         </div>
       </div>
-      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(255,255,255,0.3); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); border-radius:12px;">
-        <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
-        <a href="#" class="cta-btn" style="padding:10px 24px; background:var(--accent); color:white; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</a>
+      <div class="premium-overlay">
+        <div style="font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:12px; letter-spacing: -0.2px;">Unlock Contact Details</div>
+        <a href="#" class="btn-primary" style="padding:10px 24px; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none; display: inline-flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Request Access
+        </a>
       </div>
     </div>
   `;
@@ -1031,7 +1034,7 @@ function renderVideo(d) {
         allowfullscreen>
       </iframe>
       <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=1200&q=80" alt="Rozalado Professional Team" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
       </div>
     </div>
   `;
@@ -1083,31 +1086,31 @@ function renderTrustLayer(d) {
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="trust-item-box" style="padding:16px;">
+        <div class="trust-item-box">
           <div class="trust-item-label">Background Checks</div>
           <div class="trust-item-value" style="color:${bgChecks ? "var(--success)" : "var(--text-muted)"}; font-weight:800;">
             ${bgChecks ? "Verified" : "No"}
           </div>
         </div>
-        <div class="trust-item-box" style="padding:16px;">
+        <div class="trust-item-box">
           <div class="trust-item-label">Security Clearance</div>
           <div class="trust-item-value" style="color:${clearance?.hasClearance ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${clearance?.hasClearance ? "Active" : "None"}
           </div>
         </div>
-        <div class="trust-item-box premium-feature" style="padding:16px;">
+        <div class="trust-item-box premium-feature">
           <div class="trust-item-label">Umbrella Insurance</div>
           <div class="trust-item-value" style="color:var(--accent); font-weight:800;">
             ${umbrella}
           </div>
         </div>
-        <div class="trust-item-box" style="padding:16px;">
+        <div class="trust-item-box">
           <div class="trust-item-label">Specialized Training</div>
           <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${d.compliance.specializedTraining ? "Certified" : "No"}
           </div>
         </div>
-        <div class="trust-item-box" style="padding:16px;">
+        <div class="trust-item-box" style="grid-column: span 2;">
           <div class="trust-item-label">Labor Status</div>
           <div class="trust-item-value" style="color:var(--success); font-weight:800;">
             ${d.services.unionLabor || "Non-Union"}
@@ -1562,37 +1565,35 @@ function renderServicesBarRating(d) {
   }
 }
 
-// ── Render: Contact Details Tab (separate from blurred contact) ──
+// ── Render: Contact Details Tab ──
 function renderContactDetailsTab(d) {
   const c = $("#heroContactDetailsContent");
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div style="position:relative;">
-      <div>
-        <div class="locked-contact-wrapper">
-          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
-            <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
-            <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
-          </div>
-          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
-            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
-          </div>
-          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
-            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
-            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
-          </div>
-          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
-            <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
-          </div>
+    <div class="premium-feature">
+      <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
+          <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
+          <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
+        </div>
+        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
+        </div>
+        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
+        </div>
+        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
+          <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
         </div>
       </div>
-      <div class="premium-overlay" style="background:rgba(0,0,0,0.1); border-radius:12px; display:none;">
+      <div class="premium-overlay">
         <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
-        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</button>
+        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600;">Request Access</button>
       </div>
     </div>
   `;
