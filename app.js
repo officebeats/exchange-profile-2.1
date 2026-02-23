@@ -1024,6 +1024,11 @@ function renderVideo(d) {
     return newUrl;
   };
 
+  const getThumbnail = (url) => {
+    const match = url.match(/embed\/([^?]+)/);
+    return match ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : 'https://placehold.co/800x450/111827/3b82f6?text=About+Us';
+  };
+
   c.innerHTML = `
     <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
       <iframe class="video-iframe" id="heroVideoIframe" src="${getAutoplayUrl(d.video.url)}" 
@@ -1033,7 +1038,13 @@ function renderVideo(d) {
         style="width:100%; height:100%; flex:1;"
         allowfullscreen>
       </iframe>
-      <img class="video-fallback-img" src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; display:none;" />
+      <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
+        <img src="${getThumbnail(d.video.url)}" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; filter: brightness(0.7);" />
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48" style="color:var(--accent); opacity:0.8;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          <div style="color:white; font-size:14px; font-weight:600; text-shadow:0 2px 4px rgba(0,0,0,0.5);">Unlock Premium to watch video</div>
+        </div>
+      </div>
     </div>
   `;
 }
@@ -1411,18 +1422,20 @@ function renderCertTiles(containerId, items) {
     return `https://icon.horse/icon/${domain}.org`;
   };
 
-  c.className = "cert-grid";
+  c.className = "card-list";
   c.innerHTML = items
     .map((item) => `
-      <div class="cert-tile" title="${item.summary || item.name}">
-        <div class="cert-tile__logo">
-          <img src="${logoFor(item)}" alt="${item.name}"
-               onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="cert-tile__initials" style="display:none;">
-            ${item.name.split(/[^A-Z0-9]/)[0] || item.name.charAt(0)}
-          </div>
+      <div style="display:flex; align-items:center; gap:20px; padding:18px; background:var(--cert-card-bg); border-radius:14px; border:1px solid var(--cert-card-border); margin-bottom:12px; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s; cursor:default;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'; this.style.borderColor='var(--accent)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='var(--cert-card-border)';">
+        <div style="width:64px; height:64px; flex-shrink:0; background:white; border:1px solid var(--border-light); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:4px;">
+           <img src="${logoFor(item)}" alt="${item.name}" style="max-width:100%; max-height:100%; object-fit:contain; filter:none;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+           <div style="display:none; width:100%; height:100%; background:var(--accent); color:white; font-size:18px; font-weight:bold; align-items:center; justify-content:center; border-radius:8px;">
+             ${item.name.charAt(0)}
+           </div>
         </div>
-        <div class="cert-tile__name">${item.name}</div>
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:6px; letter-spacing:-0.2px;">${item.name}</div>
+          <div style="font-size:13px; color:var(--text-secondary); line-height:1.4;">${item.summary}</div>
+        </div>
       </div>
     `)
     .join("");
