@@ -208,9 +208,9 @@ body.premium-off .premium-upsell {
 }
 
 body.premium-off .premium-upsell > *:not(.premium-overlay) {
-  -webkit-filter: blur(8px) !important;
-  filter: blur(8px) !important;
-  opacity: 0.4 !important;
+  -webkit-filter: blur(6px) !important;
+  filter: blur(6px) !important;
+  opacity: 0.6 !important;
   pointer-events: none !important;
   user-select: none !important;
   transition: all 0.3s ease;
@@ -232,16 +232,20 @@ body.premium-off .premium-upsell > *:not(.premium-overlay) {
 
 body.premium-off .premium-overlay {
   display: flex !important;
-  background: rgba(var(--bg-rgb), 0.6);
+  /* Use a subtle transparent wash to make the button stand out, but retain frosted glass feeling */
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: inherit;
 }
+[data-theme="dark"] body.premium-off .premium-overlay {
+  background: rgba(0, 0, 0, 0.2);
+}
 
 body.premium-off .locked-contact-wrapper {
-  -webkit-filter: blur(8px) !important;
-  filter: blur(8px) !important;
-  opacity: 0.4 !important;
+  -webkit-filter: blur(6px) !important;
+  filter: blur(6px) !important;
+  opacity: 0.6 !important;
   pointer-events: none !important;
   user-select: none !important;
   transition: all 0.3s ease;
