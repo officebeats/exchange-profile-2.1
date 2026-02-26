@@ -368,11 +368,11 @@ function renderHeader(d) {
   const badgeStyle =
     "background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;";
   const verifiedBadgeStyle =
-    "display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);";
+    "display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);";
   const ratingBadgeStyle =
-    "display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:var(--text-primary); background:var(--pill-bg); padding:2px 8px; border-radius:6px; border:1px solid var(--border-light);";
+    "display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; font-weight:700; color:var(--text-primary); background:var(--pill-bg); padding:2px 8px; border-radius:6px; border:1px solid var(--border-light);";
   const unionStyle =
-    "display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:black; background:white; padding:2px 8px; border-radius:6px; border:1px solid white;";
+    "display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; font-weight:700; color:black; background:white; padding:2px 8px; border-radius:6px; border:1px solid white;";
 
   if (badges) {
     let html = `
@@ -381,7 +381,7 @@ function renderHeader(d) {
           <img src="exchange_verified_icon.png" width="16" height="16" style="object-fit:contain;" alt="Verified">
           Exchange Verified
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
     `;
     if (d.veteranOwned) {
       html += `<div style="${badgeStyle}">Veteran Owned</div>`;
