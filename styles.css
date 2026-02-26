@@ -427,7 +427,7 @@ body.premium-off .locked-contact-wrapper {
 .company-about {
   font-size: 13px;
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-bottom: 16px;
 }
 
