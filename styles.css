@@ -285,7 +285,7 @@ body.premium-off .locked-contact-wrapper {
 /* --- Company Identity --- */
 .company-identity {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 14px;
   margin-bottom: 8px;
 }
