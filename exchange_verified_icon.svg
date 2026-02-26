@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <!-- Checkmark top stroke -->
+  <polygon points="38,58 45,65 82,10 72,5 43,50 33,52" fill="white"/>
+  <!-- X bottom-left leg -->
+  <polygon points="38,58 45,65 18,115 8,110" fill="white"/>
+  <!-- X bottom-right leg -->
+  <polygon points="38,58 45,65 72,115 82,110" fill="white"/>
+</svg>
