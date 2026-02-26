@@ -78,28 +78,28 @@ const companyData = {
 
   associations: [
     {
-      name: "ISSA",
+      name: "ISSA (The Association for Cleaning & Facility Solutions)",
       summary:
         "Flagship trade body for the cleaning industry; events, standards, training, and credibility with buyers worldwide.",
       logo: "https://icon.horse/icon/issa.com",
     },
     {
-      name: "BSCAI",
+      name: "BSCAI (Building Service Contractors Association International)",
       summary:
         "Dedicated to contract cleaners; peer network, best practices, and a recognized member logo you can use in marketing.",
-      logo: "bscai_logo.png",
+      logo: "https://icon.horse/icon/bscai.org",
     },
     {
       name: "IFMA",
       summary:
         "Access to decision‑makers, insight into how FMs evaluate and manage janitorial vendors.",
-      logo: "ifma_logo.png",
+      logo: "https://icon.horse/icon/ifma.org",
     },
     {
       name: "BOMA",
       summary:
         "Standards and relationships right where janitorial contracts originate.",
-      logo: "https://www.google.com/s2/favicons?domain=boma.org&sz=128",
+      logo: "https://icon.horse/icon/boma.org",
     },
     {
       name: "CIRI",
@@ -126,23 +126,23 @@ const companyData = {
       logo: "https://icon.horse/icon/ijcsa.org",
     },
     {
-      name: "ACI",
+      name: "ACI (American Cleaning Institute)",
       summary:
         "Regulatory/technical backing for chemistry, disinfection, sustainability claims.",
-      logo: "aci_logo.png",
+      logo: "https://icon.horse/icon/cleaninginstitute.org",
     },
     {
-      name: "RIA",
+      name: "RIA (Restoration Industry Association)",
       summary: "Opens up higher‑margin restoration/emergency work channels.",
       logo: "https://icon.horse/icon/restorationindustry.org",
     },
     {
-      name: "PWNA",
+      name: "PWNA (Power Washers of North America)",
       summary: "Structure and credibility for pressure‑washing services.",
       logo: "https://icon.horse/icon/pwna.org",
     },
     {
-      name: "IWCA",
+      name: "IWCA (International Window Cleaning Association)",
       summary: "Safety and quality standards for a common janitorial add‑on.",
       logo: "https://icon.horse/icon/iwca.org",
     },
@@ -168,13 +168,13 @@ const companyData = {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
     },
   ],
   // ── v2.0 Data Enhancements ──
@@ -344,9 +344,6 @@ const externalSvg =
 // ── Render: Header ──
 function renderHeader(d) {
   const logo = $("#companyLogo");
-  logo.style.width = "120px";
-  logo.style.height = "120px";
-  logo.style.aspectRatio = "1 / 1";
   logo.style.display = "flex";
   logo.style.flexDirection = "column";
   logo.style.alignItems = "center";
@@ -355,7 +352,7 @@ function renderHeader(d) {
   logo.style.border = "1px solid var(--border-light)";
   logo.style.borderRadius = "12px";
   logo.style.overflow = "hidden";
-  logo.style.padding = "12px";
+  logo.style.padding = "4px";
   logo.innerHTML = `
     <img src="https://rozaladocleaning.com/wp-content/uploads/2017/12/rozalado-logo-header-small.svg" alt="Rozalado Logo" style="width:100%; height:100%; object-fit:contain;">
   `;
@@ -363,37 +360,26 @@ function renderHeader(d) {
   $("#companyName").textContent = d.name;
 
   const badges = $("#companyBadges");
-  let logoChipsHtml = "";
-
-  const badgeStyle =
-    "background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;";
-  const verifiedBadgeStyle =
-    "display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);";
-  const ratingBadgeStyle =
-    "display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; font-weight:700; color:var(--text-primary); background:var(--pill-bg); padding:2px 8px; border-radius:6px; border:1px solid var(--border-light);";
-  const unionStyle =
-    "display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; font-weight:700; color:black; background:white; padding:2px 8px; border-radius:6px; border:1px solid white;";
-
   if (badges) {
     let html = `
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
-        <div style="${verifiedBadgeStyle}">
-          <img src="exchange_verified_icon.png" width="16" height="16" style="object-fit:contain;" alt="Verified">
+        <div style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
           Exchange Verified
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
     `;
     if (d.veteranOwned) {
-      html += `<div style="${badgeStyle}">Veteran Owned</div>`;
+      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Veteran Owned</div>`;
     }
     if (d.womanOwned) {
-      html += `<div style="${badgeStyle}">Woman Owned</div>`;
+      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Woman Owned</div>`;
     }
     const isMBE = d.certifications?.some(
       (c) => c.name.includes("MBE") || c.name.includes("Minority"),
     );
     if (isMBE) {
-      html += `<div style="${badgeStyle}">Minority Owned</div>`;
+      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Minority Owned</div>`;
     }
     html += `</div>`;
 
@@ -401,31 +387,13 @@ function renderHeader(d) {
     badges.innerHTML = html;
   }
 
-  if (d.social?.rating) {
-    logoChipsHtml += `<div style="${ratingBadgeStyle}"><span style="color:#FF9500; font-size:14px; margin-right:4px;">★</span> ${d.social.rating} <span style="color:var(--text-muted); font-size:10px; font-weight:500; margin-left:4px;">(${d.social.reviewCount || 0})</span></div>`;
-  }
-  if (d.services?.unionLabor) {
-    if (d.services.unionLabor.toLowerCase() === "union") {
-      logoChipsHtml += `<div style="${unionStyle}">Union</div>`;
-    } else {
-      logoChipsHtml += `<div style="${unionStyle}">Non-Union</div>`;
-    }
-  }
-
-  const logoChips = $("#logoChips");
-  if (logoChips) {
-    logoChips.innerHTML = logoChipsHtml;
-    logoChips.style.display = "flex";
-    logoChips.style.gap = "6px";
-    logoChips.style.flexWrap = "wrap";
-    logoChips.style.marginTop = "8px";
-  }
-
-  // Remove the old companyRating rendering
   const ratingBox = $("#companyRating");
-  if (ratingBox) {
-    ratingBox.innerHTML = "";
-    ratingBox.style.display = "none";
+  if (ratingBox && d.social?.rating) {
+    ratingBox.innerHTML = `<div style="display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:var(--text-primary);"><span style="color:#FF9500; font-size:14px;">★</span> ${d.social.rating} <span style="color:var(--text-muted); font-size:10px; font-weight:500;">(${d.social.reviewCount || 0})</span></div>`;
+    ratingBox.style.background = "var(--pill-bg)";
+    ratingBox.style.padding = "2px 8px";
+    ratingBox.style.borderRadius = "6px";
+    ratingBox.style.border = "1px solid var(--border-light)";
   }
 
   $("#companyAbout").textContent = d.about;
@@ -588,12 +556,12 @@ function renderServices(d) {
   if (d.services.typesOfServices?.length) {
     html += `
       <div style="margin-bottom: 24px;">
-        <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Core Capabilities</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px;">CORE CAPABILITIES</div>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
           ${d.services.typesOfServices
             .map(
               (t) =>
-                `<span class="pill" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:white;">${t}</span>`,
+                `<span class="pill" style="font-weight:600; padding:6px 14px; background:var(--pill-bg);">${t}</span>`,
             )
             .join("")}
         </div>
@@ -604,12 +572,12 @@ function renderServices(d) {
   if (d.services.typesOfAccounts?.length) {
     html += `
       <div style="margin-bottom: 24px;">
-        <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Industry Specialization</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px;">INDUSTRY SPECIALIZATION</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
           ${d.services.typesOfAccounts
             .map(
               (t) =>
-                `<span class="pill" style="color:white; border-color:transparent;">${t}</span>`,
+                `<span class="pill" style="color:var(--text-secondary); border-color:transparent;">${t}</span>`,
             )
             .join("")}
         </div>
@@ -617,6 +585,16 @@ function renderServices(d) {
     `;
   }
 
+  if (d.services.unionLabor) {
+    html += `
+      <div style="display:flex; align-items:center; gap:8px; padding-top:16px; border-top:1px solid var(--border-light);">
+        <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Labor Status:</div>
+        <span class="pill" style="background:rgba(52, 199, 89, 0.1); color:var(--success); border-color:transparent; font-weight:600;">
+          ${d.services.unionLabor}
+        </span>
+      </div>
+    `;
+  }
   c.innerHTML = html;
 }
 
@@ -720,24 +698,24 @@ function setupMarketingKit(d) {
 
 // remove Services and Certifications tabs - replaced by direct grid sections
 
-// ── Render: Contact Tab (Hero) ──
+// ── Render: Contact Tab (Hero — Blurred) ──
 function renderContactTab(d) {
   const c = document.getElementById("heroContactContent");
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div class="premium-feature" style="width: 100%; height: 100%;">
-      <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
+    <div style="position:relative;">
+      <div style="filter:blur(5px); -webkit-filter:blur(5px); pointer-events:none; user-select:none;">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
           <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
           <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
         </div>
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
           <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
         </div>
-        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
+        <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
           <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
         </div>
@@ -746,12 +724,9 @@ function renderContactTab(d) {
           <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
         </div>
       </div>
-      <div class="premium-overlay">
-        <div style="font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:12px; letter-spacing: -0.2px;">Unlock Contact Details</div>
-        <a href="#" class="btn-primary" style="padding:10px 24px; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none; display: inline-flex; align-items: center; gap: 8px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          Request Access
-        </a>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(255,255,255,0.3); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); border-radius:12px;">
+        <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
+        <a href="#" class="cta-btn" style="padding:10px 24px; background:var(--accent); color:white; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</a>
       </div>
     </div>
   `;
@@ -1043,18 +1018,11 @@ function renderVideo(d) {
 
   const getAutoplayUrl = (url) => {
     let newUrl = url;
-    if (newUrl.includes("?")) newUrl += "&autoplay=1&loop=1&enablejsapi=1";
+    if (newUrl.includes("?"))
+      newUrl += "&autoplay=1&loop=1&enablejsapi=1";
     else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
     return newUrl;
   };
-  const getThumbnail = (url) => {
-    const match = url.match(/embed\/([^?]+)/);
-    return match
-      ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`
-      : "https://placehold.co/800x450/111827/3b82f6?text=About+Us";
-  };
-
-  const thumbUrl = getThumbnail(d.video.url);
 
   c.innerHTML = `
     <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
@@ -1065,9 +1033,7 @@ function renderVideo(d) {
         style="width:100%; height:100%; flex:1;"
         allowfullscreen>
       </iframe>
-      <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=1200&q=80" alt="Rozalado Professional Team" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
-      </div>
+      <img class="video-fallback-img" src="about_us_fallback.jpg" alt="About Us Banner" style="width:100%; height:100%; object-fit:cover; display:none;" />
     </div>
   `;
 }
@@ -1118,34 +1084,28 @@ function renderTrustLayer(d) {
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="trust-item-box">
+        <div class="trust-item-box" style="padding:16px;">
           <div class="trust-item-label">Background Checks</div>
           <div class="trust-item-value" style="color:${bgChecks ? "var(--success)" : "var(--text-muted)"}; font-weight:800;">
             ${bgChecks ? "Verified" : "No"}
           </div>
         </div>
-        <div class="trust-item-box">
+        <div class="trust-item-box" style="padding:16px;">
           <div class="trust-item-label">Security Clearance</div>
           <div class="trust-item-value" style="color:${clearance?.hasClearance ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${clearance?.hasClearance ? "Active" : "None"}
           </div>
         </div>
-        <div class="trust-item-box premium-feature">
+        <div class="trust-item-box premium-feature" style="padding:16px;">
           <div class="trust-item-label">Umbrella Insurance</div>
           <div class="trust-item-value" style="color:var(--accent); font-weight:800;">
             ${umbrella}
           </div>
         </div>
-        <div class="trust-item-box">
+        <div class="trust-item-box premium-feature" style="padding:16px;">
           <div class="trust-item-label">Specialized Training</div>
           <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${d.compliance.specializedTraining ? "Certified" : "No"}
-          </div>
-        </div>
-        <div class="trust-item-box" style="grid-column: span 2;">
-          <div class="trust-item-label">Labor Status</div>
-          <div class="trust-item-value" style="color:var(--success); font-weight:800;">
-            ${d.services.unionLabor || "Non-Union"}
           </div>
         </div>
       </div>
@@ -1257,30 +1217,10 @@ function renderComplianceLayer(d) {
   const bond = d.compliance.fidelityBond;
 
   const coverageItems = [
-    {
-      label: "General Liability",
-      value: limits.generalLiability,
-      icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-      color: "var(--success)",
-    },
-    {
-      label: "Auto Liability",
-      value: limits.autoLiability,
-      icon: '<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-      color: "var(--accent)",
-    },
-    {
-      label: "Umbrella",
-      value: limits.umbrella,
-      icon: '<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>',
-      color: "#8b5cf6",
-    },
-    {
-      label: "Workers Comp",
-      value: limits.workersComp,
-      icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-      color: "#f59e0b",
-    },
+    { label: "General Liability", value: limits.generalLiability, icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', color: "var(--success)" },
+    { label: "Auto Liability", value: limits.autoLiability, icon: '<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>', color: "var(--accent)" },
+    { label: "Umbrella", value: limits.umbrella, icon: '<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>', color: "#8b5cf6" },
+    { label: "Workers Comp", value: limits.workersComp, icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', color: "#f59e0b" },
   ];
 
   c.innerHTML = `
@@ -1288,9 +1228,7 @@ function renderComplianceLayer(d) {
 
       <!-- Coverage Cards Grid -->
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        ${coverageItems
-          .map(
-            (item) => `
+        ${coverageItems.map(item => `
           <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
             <div style="display:flex; align-items:center; gap:8px;">
               <svg viewBox="0 0 24 24" fill="none" stroke="${item.color}" stroke-width="2" width="18" height="18">${item.icon}</svg>
@@ -1298,9 +1236,7 @@ function renderComplianceLayer(d) {
             </div>
             <div style="font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:-0.5px; line-height:1;">${item.value}</div>
           </div>
-        `,
-          )
-          .join("")}
+        `).join("")}
       </div>
 
       <!-- Fidelity Bond -->
@@ -1317,32 +1253,24 @@ function renderComplianceLayer(d) {
         <div style="margin-bottom:16px;">
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NAICS Codes (Tax & Marketplaces)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.naics
-              .map(
-                (n) => `
+            ${d.compliance.naics.map(n => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
                 <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}${n.primary ? " ⭐" : ""}</span>
               </div>
-            `,
-              )
-              .join("")}
+            `).join("")}
           </div>
         </div>
 
         <div>
           <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NIGP Codes (Public Sector Procurement)</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.nigp
-              .map(
-                (n) => `
+            ${d.compliance.nigp.map(n => `
               <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
                 <span style="font-family:monospace; background:rgba(0,0,0,0.03); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
                 <span style="flex:1;">${n.description}</span>
               </div>
-            `,
-              )
-              .join("")}
+            `).join("")}
           </div>
         </div>
       </div>
@@ -1478,31 +1406,25 @@ function renderCertTiles(containerId, items) {
   // Use icon.horse for org logos; fallback to first letter pill
   const logoFor = (item) => {
     if (item.logo) return item.logo;
-    const domain = item.name
-      .toLowerCase()
-      .replace(/[^a-z0-9 ]/g, "")
-      .split(" ")[0];
+    const domain = item.name.toLowerCase()
+      .replace(/[^a-z0-9 ]/g, "").split(" ")[0];
     return `https://icon.horse/icon/${domain}.org`;
   };
 
-  c.className = "card-list";
+  c.className = "cert-grid";
   c.innerHTML = items
-    .map(
-      (item) => `
-      <div style="display:flex; align-items:center; gap:20px; padding:18px; background:var(--cert-card-bg); border-radius:14px; border:1px solid var(--cert-card-border); margin-bottom:12px; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s; cursor:default;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'; this.style.borderColor='var(--accent)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='var(--cert-card-border)';">
-        <div style="width:64px; height:64px; flex-shrink:0; background:white; border:1px solid var(--border-light); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:4px;">
-           <img src="${logoFor(item)}" alt="${item.name}" style="max-width:100%; max-height:100%; object-fit:contain; filter:none;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-           <div style="display:none; width:100%; height:100%; background:var(--accent); color:white; font-size:18px; font-weight:bold; align-items:center; justify-content:center; border-radius:8px;">
-             ${item.name.charAt(0)}
-           </div>
+    .map((item) => `
+      <div class="cert-tile" title="${item.summary || item.name}">
+        <div class="cert-tile__logo">
+          <img src="${logoFor(item)}" alt="${item.name}"
+               onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="cert-tile__initials" style="display:none;">
+            ${item.name.split(/[^A-Z0-9]/)[0] || item.name.charAt(0)}
+          </div>
         </div>
-        <div style="flex:1; min-width:0;">
-          <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:6px; letter-spacing:-0.2px;">${item.name}</div>
-          <div style="font-size:13px; color:var(--text-secondary); line-height:1.4;">${item.summary}</div>
-        </div>
+        <div class="cert-tile__name">${item.name}</div>
       </div>
-    `,
-    )
+    `)
     .join("");
 }
 
@@ -1597,35 +1519,37 @@ function renderServicesBarRating(d) {
   }
 }
 
-// ── Render: Contact Details Tab ──
+// ── Render: Contact Details Tab (separate from blurred contact) ──
 function renderContactDetailsTab(d) {
   const c = $("#heroContactDetailsContent");
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div class="premium-feature">
-      <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
-          <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
-          <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
-        </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
-          <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
+    <div style="position:relative;">
+      <div>
+        <div class="locked-contact-wrapper">
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
+            <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
+          </div>
+          <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
+            <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
+          </div>
         </div>
       </div>
-      <div class="premium-overlay">
+      <div class="premium-overlay" style="background:rgba(0,0,0,0.1); border-radius:12px; display:none;">
         <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
-        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600;">Request Access</button>
+        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Request Access</button>
       </div>
     </div>
   `;
@@ -1765,12 +1689,6 @@ if (premiumToggle) {
   // Check if there's a saved preference (optional, left out for simplicity - default to ON)
   premiumToggle.addEventListener("click", () => {
     const isOff = document.body.classList.toggle("premium-off");
-
-    if (isOff) {
-      document.querySelector('.tab-btn[data-tab="serviceArea"]')?.click();
-    } else {
-      document.querySelector('.tab-btn[data-tab="aboutUs"]')?.click();
-    }
 
     // Video pausing/playing
     const iframe = document.getElementById("heroVideoIframe");
