@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
-  <!-- Checkmark top stroke -->
-  <polygon points="38,58 45,65 82,10 72,5 43,50 33,52" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 130" fill="white">
+  <!-- Checkmark: short left arm -->
+  <polygon points="22,52 42,72 48,66 28,46"/>
+  <!-- Checkmark: long right arm -->
+  <polygon points="42,72 48,66 88,6 82,0"/>
   <!-- X bottom-left leg -->
-  <polygon points="38,58 45,65 18,115 8,110" fill="white"/>
+  <polygon points="30,78 42,72 48,66 22,108 16,102"/>
   <!-- X bottom-right leg -->
-  <polygon points="38,58 45,65 72,115 82,110" fill="white"/>
+  <polygon points="48,66 42,72 60,108 66,102"/>
 </svg>
