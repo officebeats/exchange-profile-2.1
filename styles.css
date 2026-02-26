@@ -574,10 +574,6 @@ body.premium-off .locked-contact-wrapper {
   border-radius: 10px;
 }
 
-body.premium-off .tabs-nav {
-  grid-template-columns: repeat(4, 1fr);
-}
-
 .tab-btn {
   padding: 8px 10px;
   background: transparent;
