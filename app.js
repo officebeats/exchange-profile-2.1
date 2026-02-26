@@ -588,7 +588,7 @@ function renderServices(d) {
   if (d.services.typesOfServices?.length) {
     html += `
       <div style="margin-bottom: 24px;">
-        <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px;">CORE CAPABILITIES</div>
+        <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Core Capabilities</div>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
           ${d.services.typesOfServices
             .map(
@@ -604,7 +604,7 @@ function renderServices(d) {
   if (d.services.typesOfAccounts?.length) {
     html += `
       <div style="margin-bottom: 24px;">
-        <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px;">INDUSTRY SPECIALIZATION</div>
+        <div style="font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Industry Specialization</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
           ${d.services.typesOfAccounts
             .map(
