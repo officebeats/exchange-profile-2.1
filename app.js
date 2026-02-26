@@ -726,7 +726,7 @@ function renderContactTab(d) {
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div class="premium-feature" style="width: 100%; height: 100%;">
+    <div class="premium-upsell" style="width: 100%; height: 100%;">
       <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
         <div style="padding:12px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
@@ -748,9 +748,9 @@ function renderContactTab(d) {
       </div>
       <div class="premium-overlay">
         <div style="font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:12px; letter-spacing: -0.2px;">Unlock Contact Details</div>
-        <a href="#" class="btn-primary" style="padding:10px 24px; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none; display: inline-flex; align-items: center; gap: 8px;">
+        <a href="#" class="btn-gold" style="padding:10px 24px; border-radius:10px; font-size:13px; font-weight:600; text-decoration:none; display: inline-flex; align-items: center; gap: 8px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          Request Access
+          Upgrade Subscription
         </a>
       </div>
     </div>
@@ -1604,7 +1604,7 @@ function renderContactDetailsTab(d) {
   if (!c || !d.contact) return;
 
   c.innerHTML = `
-    <div class="premium-feature">
+    <div class="premium-upsell" style="height:100%;">
       <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
         <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
