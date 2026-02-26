@@ -292,8 +292,8 @@ body.premium-off .locked-contact-wrapper {
 
 .company-logo {
   flex-shrink: 0;
-  width: 120px !important;
-  height: 120px !important;
+  width: 140px !important;
+  height: 140px !important;
   aspect-ratio: 1 / 1 !important;
   display: flex !important;
   border-radius: 12px;
