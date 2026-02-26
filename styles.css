@@ -400,41 +400,6 @@ body.premium-off .locked-contact-wrapper {
   font-size: 11px;
 }
 
-/* --- Trust & Safety Boxes --- */
-.trust-item-box {
-  background: var(--pill-bg);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.trust-item-box:hover {
-  border-color: var(--accent);
-  background: var(--card-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.trust-item-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  text-transform: none;
-  letter-spacing: -0.2px;
-  line-height: 1.2;
-}
-
-.trust-item-value {
-  font-size: 14px;
-}
-
 /* --- Key Metrics --- */
 .key-metrics {
   display: grid;

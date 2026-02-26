@@ -1072,8 +1072,7 @@ function renderVideo(d) {
   `;
 }
 
-// ── Render: Trust & Safety (v2.0 — EMR + Background Checks + Security Clearance) ──
-// ── Render: Trust & Safety (v2.0) ──
+// ── Render: Trust & Safety (v2.1 — EMR + Background Checks + Security Clearance + Training) ──
 function renderTrustLayer(d) {
   const c = $("#trustContent");
   if (!c || !d.compliance) return;
@@ -1081,7 +1080,6 @@ function renderTrustLayer(d) {
   const emr = d.compliance.emr[0];
   const bgChecks = d.compliance.backgroundChecks;
   const clearance = d.compliance.securityClearance;
-  const umbrella = d.compliance.coi.limits.umbrella;
 
   // EMR Score styling logic
   const emrFloat = parseFloat(emr.rate);
@@ -1090,9 +1088,17 @@ function renderTrustLayer(d) {
   let emrPercent = ((emrFloat - 0.5) / (1.5 - 0.5)) * 100;
   emrPercent = Math.max(0, Math.min(100, emrPercent));
 
+  // Icons for the trust items
+  const bgCheckIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
+  const clearanceIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+  const trainingIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>';
+
   c.innerHTML = `
     <div style="display:flex; flex-direction:column; gap:20px;">
-      <!-- Experience Modification Rate Summary -->
+      <!-- Safety Benchmark -->
       <div style="background:var(--pill-bg); padding:16px; border-radius:12px; border:1px solid var(--border-light);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
           <div>
@@ -1107,7 +1113,6 @@ function renderTrustLayer(d) {
         <!-- EMR Bar Component -->
         <div style="position:relative; width:100%; height:8px; background:linear-gradient(to right, #34c759 40%, #ffcc00 60%, #ff3b30 100%); border-radius:4px; margin-top:16px;">
           <div style="position:absolute; top:-4px; left:${emrPercent}%; transform:translateX(-50%); width:4px; height:16px; background:#000; border-radius:2px; z-index:2; border:1px solid #fff;"></div>
-          <!-- Baseline marker -->
           <div style="position:absolute; top:-2px; left:50%; width:2px; height:12px; background:rgba(0,0,0,0.2); z-index:1;"></div>
         </div>
         <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:var(--text-muted); font-weight:600;">
@@ -1118,29 +1123,26 @@ function renderTrustLayer(d) {
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="trust-item-box">
-          <div class="trust-item-label">Background Checks</div>
-          <div class="trust-item-value" style="color:${bgChecks ? "var(--success)" : "var(--text-muted)"}; font-weight:800;">
-            ${bgChecks ? "Verified" : "No"}
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${bgCheckIcon}
+            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
           </div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${bgChecks ? "Verified" : "No"}</div>
         </div>
-        <div class="trust-item-box">
-          <div class="trust-item-label">Security Clearance</div>
-          <div class="trust-item-value" style="color:${clearance?.hasClearance ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
-            ${clearance?.hasClearance ? "Active" : "None"}
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${clearanceIcon}
+            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Security Clearance</span>
           </div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${clearance?.hasClearance ? "Active" : "None"}</div>
         </div>
-        <div class="trust-item-box premium-feature">
-          <div class="trust-item-label">Umbrella Insurance</div>
-          <div class="trust-item-value" style="color:var(--accent); font-weight:800;">
-            ${umbrella}
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${trainingIcon}
+            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Specialized Training</span>
           </div>
-        </div>
-        <div class="trust-item-box">
-          <div class="trust-item-label">Specialized Training</div>
-          <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
-            ${d.compliance.specializedTraining ? "Certified" : "No"}
-          </div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${d.compliance.specializedTraining ? "Certified" : "No"}</div>
         </div>
       </div>
     </div>
@@ -1242,7 +1244,7 @@ function renderOrgCards(containerId, items) {
     .join("");
 }
 
-// ── Render: Compliance Layer (v2.1 — Coverage Cards + Codes) ──
+// ── Render: Compliance Layer (v2.1 — Coverage Cards only, Business Codes moved out) ──
 function renderComplianceLayer(d) {
   const c = $("#complianceContent");
   if (!d.compliance) return;
@@ -1290,7 +1292,7 @@ function renderComplianceLayer(d) {
               <svg viewBox="0 0 24 24" fill="none" stroke="${item.color}" stroke-width="2" width="18" height="18">${item.icon}</svg>
               <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">${item.label}</span>
             </div>
-            <div style="font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:-0.5px; line-height:1;">${item.value}</div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${item.value}</div>
           </div>
         `,
           )
@@ -1299,45 +1301,50 @@ function renderComplianceLayer(d) {
 
       <!-- Fidelity Bond -->
       <div style="padding:16px; background:rgba(0,113,227,0.04); border:1px solid rgba(0,113,227,0.1); border-radius:12px;">
-        <div style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">${bond?.type || "Fidelity Bond"}</div>
-        <div style="font-size:24px; font-weight:700; color:var(--text-primary);">${bond?.amount || "—"}</div>
+        <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">${bond?.type || "Fidelity Bond"}</div>
+        <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${bond?.amount || "—"}</div>
         <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Bonded and Insured for commercial contract protection</div>
       </div>
+    </div>
+  `;
+}
 
-      <!-- Business Codes -->
-      <div style="border-top:1px solid var(--border-light); padding-top:16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; letter-spacing:0.5px; text-transform:uppercase;">Business Codes</div>
+// ── Render: Business Codes (v2.1 — Standalone full-width section) ──
+function renderBusinessCodes(d) {
+  const c = $("#businessCodesContent");
+  if (!c || !d.compliance) return;
 
-        <div style="margin-bottom:16px;">
-          <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NAICS Codes (Tax & Marketplaces)</div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.naics
-              .map(
-                (n) => `
-              <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
-                <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
-                <span style="flex:1;">${n.description}${n.primary ? " ⭐" : ""}</span>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
+  c.innerHTML = `
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NAICS Codes (Tax & Marketplaces)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          ${d.compliance.naics
+            .map(
+              (n) => `
+            <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
+              <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
+              <span style="flex:1;">${n.description}${n.primary ? " ⭐" : ""}</span>
+            </div>
+          `,
+            )
+            .join("")}
         </div>
+      </div>
 
-        <div>
-          <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NIGP Codes (Public Sector Procurement)</div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            ${d.compliance.nigp
-              .map(
-                (n) => `
-              <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
-                <span style="font-family:monospace; background:rgba(0,0,0,0.03); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
-                <span style="flex:1;">${n.description}</span>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">NIGP Codes (Public Sector Procurement)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          ${d.compliance.nigp
+            .map(
+              (n) => `
+            <div style="font-size:13px; color:var(--text-secondary); display:flex; align-items:flex-start;">
+              <span style="font-family:monospace; background:var(--pill-bg); padding:2px 6px; border-radius:4px; margin-right:8px; font-size:12px; color:var(--text-primary); border:1px solid var(--border); line-height:1;">${n.code}</span>
+              <span style="flex:1;">${n.description}</span>
+            </div>
+          `,
+            )
+            .join("")}
         </div>
       </div>
     </div>
@@ -1742,6 +1749,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Body Grid Renderers
   renderTrustLayer(companyData);
   renderComplianceLayer(companyData);
+  renderBusinessCodes(companyData);
   renderServices(companyData);
   renderDocuments(companyData);
 
