@@ -609,7 +609,7 @@ function renderServices(d) {
           ${d.services.typesOfAccounts
             .map(
               (t) =>
-                `<span class="pill" style="color:var(--text-secondary); border-color:transparent;">${t}</span>`,
+                `<span class="pill" style="color:white; border-color:transparent;">${t}</span>`,
             )
             .join("")}
         </div>
