@@ -423,11 +423,12 @@ body.premium-off .locked-contact-wrapper {
 }
 
 .trust-item-label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  text-transform: none;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
 }
 
 .trust-item-value {
