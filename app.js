@@ -126,23 +126,23 @@ const companyData = {
       logo: "https://icon.horse/icon/ijcsa.org",
     },
     {
-      name: "ACI (American Cleaning Institute)",
+      name: "ACI",
       summary:
         "Regulatory/technical backing for chemistry, disinfection, sustainability claims.",
       logo: "aci_logo.png",
     },
     {
-      name: "RIA (Restoration Industry Association)",
+      name: "RIA",
       summary: "Opens up higher‑margin restoration/emergency work channels.",
       logo: "https://icon.horse/icon/restorationindustry.org",
     },
     {
-      name: "PWNA (Power Washers of North America)",
+      name: "PWNA",
       summary: "Structure and credibility for pressure‑washing services.",
       logo: "https://icon.horse/icon/pwna.org",
     },
     {
-      name: "IWCA (International Window Cleaning Association)",
+      name: "IWCA",
       summary: "Safety and quality standards for a common janitorial add‑on.",
       logo: "https://icon.horse/icon/iwca.org",
     },
@@ -378,7 +378,7 @@ function renderHeader(d) {
     let html = `
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
         <div style="${verifiedBadgeStyle}">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <img src="exchange_verified_icon.png" width="16" height="16" style="object-fit:contain; filter:brightness(0) invert(1);" alt="Verified">
           Exchange Verified
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
