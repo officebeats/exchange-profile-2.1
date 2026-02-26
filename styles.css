@@ -1009,30 +1009,7 @@ body:not(.premium-off) .tab-btn.premium-feature.active {
   font-weight: 500;
   transition: border-color 0.2s;
 }
-/* --- Trust & Safety Section --- */
-.trust-item-box {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  background: var(--pill-bg);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-}
-.trust-item-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted) !important;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.trust-item-value {
-  font-size: 14px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+
 .clearance-code-pill {
   display: inline-flex;
   align-items: center;
