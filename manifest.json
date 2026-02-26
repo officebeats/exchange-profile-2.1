@@ -1,0 +1,16 @@
+{
+  "name": "Rozalado Exchange Profile",
+  "short_name": "Rozalado",
+  "description": "Provider profile portfolio for Rozalado Services in the Exchange network",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#f8f9fa",
+  "icons": [
+    {
+      "src": "exchange_verified_icon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

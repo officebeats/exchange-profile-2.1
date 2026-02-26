@@ -1758,6 +1758,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Sticky CTA
   initStickyCta(companyData);
+
+  // Register Service Worker for PWA
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then((reg) => console.log("Service Worker registered", reg))
+      .catch((err) => console.warn("Service Worker registration failed", err));
+  }
 });
 
 // Premium Toggle functionality
