@@ -129,7 +129,7 @@ const companyData = {
       name: "ACI (American Cleaning Institute)",
       summary:
         "Regulatory/technical backing for chemistry, disinfection, sustainability claims.",
-      logo: "https://icon.horse/icon/cleaninginstitute.org",
+      logo: "aci_logo.png",
     },
     {
       name: "RIA (Restoration Industry Association)",
