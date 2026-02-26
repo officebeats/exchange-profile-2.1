@@ -99,7 +99,7 @@ const companyData = {
       name: "BOMA",
       summary:
         "Standards and relationships right where janitorial contracts originate.",
-      logo: "https://icon.horse/icon/boma.org",
+      logo: "https://www.google.com/s2/favicons?domain=boma.org&sz=128",
     },
     {
       name: "CIRI",
