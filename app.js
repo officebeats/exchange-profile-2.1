@@ -78,13 +78,13 @@ const companyData = {
 
   associations: [
     {
-      name: "ISSA (The Association for Cleaning & Facility Solutions)",
+      name: "ISSA",
       summary:
         "Flagship trade body for the cleaning industry; events, standards, training, and credibility with buyers worldwide.",
       logo: "https://icon.horse/icon/issa.com",
     },
     {
-      name: "BSCAI (Building Service Contractors Association International)",
+      name: "BSCAI",
       summary:
         "Dedicated to contract cleaners; peer network, best practices, and a recognized member logo you can use in marketing.",
       logo: "bscai_logo.png",
@@ -344,7 +344,8 @@ const externalSvg =
 // ── Render: Header ──
 function renderHeader(d) {
   const logo = $("#companyLogo");
-  logo.style.width = "100%";
+  logo.style.width = "120px";
+  logo.style.height = "120px";
   logo.style.aspectRatio = "1 / 1";
   logo.style.display = "flex";
   logo.style.flexDirection = "column";

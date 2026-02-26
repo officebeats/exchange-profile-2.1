@@ -291,14 +291,15 @@ body.premium-off .locked-contact-wrapper {
 }
 
 .company-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  overflow: hidden;
   flex-shrink: 0;
-  background: var(--pill-bg);
-  border: 1px solid var(--border);
-  display: flex;
+  width: 120px !important;
+  height: 120px !important;
+  aspect-ratio: 1 / 1 !important;
+  display: flex !important;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: white;
   align-items: center;
   justify-content: center;
 }
@@ -1139,6 +1140,7 @@ body:not(.premium-off) .tab-btn.premium-feature.active {
   object-fit: contain;
   filter: none;
   image-rendering: -webkit-optimize-contrast;
+  border-radius: 0 !important; /* Forces logos to stay rectangular */
 }
 
 .logo-item__label {
