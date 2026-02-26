@@ -1,0 +1,18 @@
+7e0c69e chore: clean up old index
+c041675 fix: Corrected undefined --bg-card variable to --card-bg and synced repo to latest local state
+feae24c fix: About Us hero image, Contact tab blur logic, ISSA logo consistency, Trust section alignment, and bottom spacing
+065c4d7 fix: about us image fallback in premium off mode and release v2.0.1
+89101d0 final: complete all requested UI refinements - move labor status to trust & safety, polish hero CTA alignment, and clean up
+68576b7 fix(UI): remove video fallback overlay text and play button, display raw image
+1bfe61b update: apply IEHA logo to ISSA certs and use static about_us_fallback.jpg image per user feedback
+04998c1 fix(UI): fix missing about us fallback banner in premium-off state by using dynamic YouTube thumbnail & fix dark mode/premium default state
+4334690 feat: v2.1 - final layout (Services|T&S, Certs|Assoc, Compliance|Docs), coverage cards, compliance UX, IEHA logo, cert tiles, unmuted video
+44decbb feat: Exchange Profile v2.1 - layout refinements, tile animations, logo fixes
+ef6772c feat: updated socials tab layout, enlarged logo, and added premium toggle
+bc8cbdf design: optimize hero tab content height to eliminate scrolling
+f0df3fd design: fix jarring gradient and contrast in compliance section
+e905c7f feat: enhanced V2 mobile UI/UX
+f8963b4 feat: exchange profile v2 with mobile-optimized UI
+bae910f add app.js
+a2dad69 add styles.css
+8e14bde feat: Exchange Profile v1.0

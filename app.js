@@ -87,13 +87,13 @@ const companyData = {
       name: "BSCAI (Building Service Contractors Association International)",
       summary:
         "Dedicated to contract cleaners; peer network, best practices, and a recognized member logo you can use in marketing.",
-      logo: "https://icon.horse/icon/bscai.org",
+      logo: "bscai_logo.png",
     },
     {
       name: "IFMA",
       summary:
         "Access to decision‑makers, insight into how FMs evaluate and manage janitorial vendors.",
-      logo: "https://icon.horse/icon/ifma.org",
+      logo: "ifma_logo.png",
     },
     {
       name: "BOMA",
@@ -344,6 +344,8 @@ const externalSvg =
 // ── Render: Header ──
 function renderHeader(d) {
   const logo = $("#companyLogo");
+  logo.style.width = "100%";
+  logo.style.aspectRatio = "1 / 1";
   logo.style.display = "flex";
   logo.style.flexDirection = "column";
   logo.style.alignItems = "center";
@@ -352,7 +354,7 @@ function renderHeader(d) {
   logo.style.border = "1px solid var(--border-light)";
   logo.style.borderRadius = "12px";
   logo.style.overflow = "hidden";
-  logo.style.padding = "4px";
+  logo.style.padding = "12px";
   logo.innerHTML = `
     <img src="https://rozaladocleaning.com/wp-content/uploads/2017/12/rozalado-logo-header-small.svg" alt="Rozalado Logo" style="width:100%; height:100%; object-fit:contain;">
   `;
@@ -360,26 +362,37 @@ function renderHeader(d) {
   $("#companyName").textContent = d.name;
 
   const badges = $("#companyBadges");
+  let logoChipsHtml = "";
+
+  const badgeStyle =
+    "background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;";
+  const verifiedBadgeStyle =
+    "display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);";
+  const ratingBadgeStyle =
+    "display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:var(--text-primary); background:var(--pill-bg); padding:2px 8px; border-radius:6px; border:1px solid var(--border-light);";
+  const unionStyle =
+    "display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:black; background:white; padding:2px 8px; border-radius:6px; border:1px solid white;";
+
   if (badges) {
     let html = `
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
-        <div style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:4px 12px; border-radius:12px; font-size:14px; font-weight:700; width:fit-content; box-shadow:0 2px 8px rgba(37,99,235,0.2);">
+        <div style="${verifiedBadgeStyle}">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
           Exchange Verified
         </div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <div style="display:flex; flex-wrap:wrap; gap:6px;">
     `;
     if (d.veteranOwned) {
-      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Veteran Owned</div>`;
+      html += `<div style="${badgeStyle}">Veteran Owned</div>`;
     }
     if (d.womanOwned) {
-      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Woman Owned</div>`;
+      html += `<div style="${badgeStyle}">Woman Owned</div>`;
     }
     const isMBE = d.certifications?.some(
       (c) => c.name.includes("MBE") || c.name.includes("Minority"),
     );
     if (isMBE) {
-      html += `<div style="background:var(--pill-bg); border:1px solid var(--border-light); color:var(--text-secondary); padding:2px 8px; border-radius:6px; font-size:12px; font-weight:600;">Minority Owned</div>`;
+      html += `<div style="${badgeStyle}">Minority Owned</div>`;
     }
     html += `</div>`;
 
@@ -387,13 +400,31 @@ function renderHeader(d) {
     badges.innerHTML = html;
   }
 
+  if (d.social?.rating) {
+    logoChipsHtml += `<div style="${ratingBadgeStyle}"><span style="color:#FF9500; font-size:14px; margin-right:4px;">★</span> ${d.social.rating} <span style="color:var(--text-muted); font-size:10px; font-weight:500; margin-left:4px;">(${d.social.reviewCount || 0})</span></div>`;
+  }
+  if (d.services?.unionLabor) {
+    if (d.services.unionLabor.toLowerCase() === "union") {
+      logoChipsHtml += `<div style="${unionStyle}">Union</div>`;
+    } else {
+      logoChipsHtml += `<div style="${unionStyle}">Non-Union</div>`;
+    }
+  }
+
+  const logoChips = $("#logoChips");
+  if (logoChips) {
+    logoChips.innerHTML = logoChipsHtml;
+    logoChips.style.display = "flex";
+    logoChips.style.gap = "6px";
+    logoChips.style.flexWrap = "wrap";
+    logoChips.style.marginTop = "8px";
+  }
+
+  // Remove the old companyRating rendering
   const ratingBox = $("#companyRating");
-  if (ratingBox && d.social?.rating) {
-    ratingBox.innerHTML = `<div style="display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px; font-weight:700; color:var(--text-primary);"><span style="color:#FF9500; font-size:14px;">★</span> ${d.social.rating} <span style="color:var(--text-muted); font-size:10px; font-weight:500;">(${d.social.reviewCount || 0})</span></div>`;
-    ratingBox.style.background = "var(--pill-bg)";
-    ratingBox.style.padding = "2px 8px";
-    ratingBox.style.borderRadius = "6px";
-    ratingBox.style.border = "1px solid var(--border-light)";
+  if (ratingBox) {
+    ratingBox.innerHTML = "";
+    ratingBox.style.display = "none";
   }
 
   $("#companyAbout").textContent = d.about;
