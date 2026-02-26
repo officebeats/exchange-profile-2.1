@@ -425,7 +425,7 @@ body.premium-off .locked-contact-wrapper {
 .trust-item-label {
   font-size: 10px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

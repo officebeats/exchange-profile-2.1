@@ -1096,7 +1096,7 @@ function renderTrustLayer(d) {
       <div style="background:var(--pill-bg); padding:16px; border-radius:12px; border:1px solid var(--border-light);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
           <div>
-            <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">Safety Benchmark</div>
+            <div style="font-size:11px; font-weight:600; color:white; text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">Safety Benchmark</div>
             <div style="font-size:13px; color:var(--text-secondary);">Industry average is 1.0</div>
           </div>
           <div style="text-align:right;">
@@ -1140,12 +1140,6 @@ function renderTrustLayer(d) {
           <div class="trust-item-label">Specialized Training</div>
           <div class="trust-item-value" style="color:${d.compliance.specializedTraining ? "var(--accent)" : "var(--text-muted)"}; font-weight:800;">
             ${d.compliance.specializedTraining ? "Certified" : "No"}
-          </div>
-        </div>
-        <div class="trust-item-box" style="grid-column: span 2;">
-          <div class="trust-item-label">Labor Status</div>
-          <div class="trust-item-value" style="color:var(--success); font-weight:800;">
-            ${d.services.unionLabor || "Non-Union"}
           </div>
         </div>
       </div>
