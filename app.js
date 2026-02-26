@@ -1766,6 +1766,12 @@ if (premiumToggle) {
   premiumToggle.addEventListener("click", () => {
     const isOff = document.body.classList.toggle("premium-off");
 
+    if (isOff) {
+      document.querySelector('.tab-btn[data-tab="serviceArea"]')?.click();
+    } else {
+      document.querySelector('.tab-btn[data-tab="aboutUs"]')?.click();
+    }
+
     // Video pausing/playing
     const iframe = document.getElementById("heroVideoIframe");
     if (iframe) {
