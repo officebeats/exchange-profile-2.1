@@ -1112,23 +1112,13 @@ body:not(.premium-off) .tab-btn.premium-feature.active {
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  filter: grayscale(100%) opacity(0.6) contrast(1.1);
-  transition: filter 0.3s ease;
   image-rendering: -webkit-optimize-contrast;
   border-radius: 0 !important;
 }
 
 [data-theme="dark"] .logo-item__img-wrapper img {
-  filter: grayscale(100%) brightness(0) invert(1) opacity(0.6);
-}
-
-.logo-item:hover .logo-item__img-wrapper img {
-  filter: grayscale(0%) opacity(1) contrast(1);
-}
-
-[data-theme="dark"] .logo-item:hover .logo-item__img-wrapper img {
-  filter: grayscale(0%) opacity(1) contrast(1)
-    drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.8));
+  /* Only add a soft white glow behind logos in dark mode so dark text is still readable, no grayscale/inversion */
+  filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.4));
 }
 
 .logo-item__label {
