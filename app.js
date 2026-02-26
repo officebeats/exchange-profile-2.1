@@ -1625,8 +1625,7 @@ function renderContactDetailsTab(d) {
         </div>
       </div>
       <div class="premium-overlay">
-        <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Unlock Contact Details</div>
-        <button class="btn-primary" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:600;">Request Access</button>
+        <button class="btn-gold" style="padding:10px 24px; border-radius:8px; font-size:13px; font-weight:700;">Upgrade Subscription</button>
       </div>
     </div>
   `;
