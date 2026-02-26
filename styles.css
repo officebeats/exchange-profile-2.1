@@ -1750,6 +1750,14 @@ body.premium-off .video-iframe {
     align-items: center;
   }
 
+  .company-badges-container {
+    align-items: center;
+  }
+
+  .company-badges-grid {
+    justify-content: center;
+  }
+
   .trust-strip {
     justify-content: center;
     gap: 5px;

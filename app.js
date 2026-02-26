@@ -376,12 +376,12 @@ function renderHeader(d) {
 
   if (badges) {
     let html = `
-      <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+      <div class="company-badges-container" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
         <div style="${verifiedBadgeStyle}">
           <img src="exchange_verified_icon.png" width="16" height="16" style="object-fit:contain;" alt="Verified">
           Exchange Verified
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <div class="company-badges-grid" style="display:flex; flex-wrap:wrap; gap:8px;">
     `;
     if (d.veteranOwned) {
       html += `<div style="${badgeStyle}">Veteran Owned</div>`;
