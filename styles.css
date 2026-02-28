@@ -430,9 +430,9 @@ body.premium-off .locked-contact-wrapper {
 
 /* --- Key Metrics --- */
 .key-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin: auto 0 0 0;
 }
 

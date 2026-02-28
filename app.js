@@ -466,21 +466,36 @@ function renderHeader(d) {
 // ── Render: Metrics ──
 function renderMetrics(d) {
   const c = $("#keyMetrics");
-  const items = [
+  const row1 = [
     { label: "HEADQUARTERS", value: d.metrics.headquarters },
     { label: "FOUNDED IN", value: d.metrics.foundedIn },
-    { label: "COMPANY SIZE", value: d.metrics.companySize },
     {
       label: "ANNUAL REVENUE",
       value: d.metrics.annualRevenue || "Not provided",
     },
   ];
-  c.innerHTML = items
+  const row2 = [
+    { label: "COMPANY SIZE", value: d.metrics.companySize },
+    { label: "% SUBCONTRACTED", value: "40%" },
+  ];
+
+  const html1 = row1
     .map(
       (m) =>
-        `<div><div class="metric-label">${m.label}</div><div class="metric-value">${m.value}</div></div>`,
+        `<div style="flex: 1;"><div class="metric-label">${m.label}</div><div class="metric-value">${m.value}</div></div>`,
     )
     .join("");
+  const html2 = row2
+    .map(
+      (m) =>
+        `<div style="flex: 1;"><div class="metric-label">${m.label}</div><div class="metric-value">${m.value}</div></div>`,
+    )
+    .join("");
+
+  c.innerHTML = `
+    <div style="display: flex; gap: 16px;">${html1}</div>
+    <div style="display: flex; gap: 16px;">${html2}</div>
+  `;
 }
 
 // ── Render: Service Area (Mapbox GL JS) ──
