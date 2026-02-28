@@ -73,7 +73,7 @@ const companyData = {
     { name: "Tax Identification (W-9)", provided: true },
     { name: "Business License", provided: true },
     { name: "Full Insurance Coverage Policy", provided: true },
-    { name: "SS4", provided: true },
+    { name: "SS-4", provided: false },
   ],
 
   associations: [
@@ -153,28 +153,33 @@ const companyData = {
       name: "WBENC Certified (WBE)",
       summary: "Women's Business Enterprise National Council certified.",
       logo: "https://www.google.com/s2/favicons?domain=wbenc.org&sz=128",
+      segment: "Business",
     },
     {
       name: "NMSDC Certified (MBE)",
       summary: "National Minority Supplier Development Council certified.",
       logo: "https://www.google.com/s2/favicons?domain=nmsdc.org&sz=128",
+      segment: "Business",
     },
     {
       name: "NaVOBA Certified (SDVOB)",
       summary: "Service-Disabled Veteran's Business Enterprise certified.",
       logo: "https://www.google.com/s2/favicons?domain=navoba.org&sz=128",
+      segment: "Business",
     },
     {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
       logo: "https://icon.horse/icon/issa.com",
+      segment: "Industry",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
       logo: "https://icon.horse/icon/issa.com",
+      segment: "Industry",
     },
   ],
   // ── v2.0 Data Enhancements ──
@@ -343,6 +348,13 @@ const externalSvg =
 
 // ── Render: Header ──
 function renderHeader(d) {
+  // Fix left column: remove justify-content: space-between to prevent large gap between logo and chips
+  const logoWrapper = $("#companyLogo")?.parentElement;
+  if (logoWrapper) {
+    logoWrapper.style.justifyContent = "space-between";
+    logoWrapper.style.gap = "8px";
+  }
+
   const logo = $("#companyLogo");
   logo.style.width = "120px";
   logo.style.height = "120px";
@@ -375,30 +387,39 @@ function renderHeader(d) {
     "display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; font-weight:700; color:black; background:white; padding:2px 8px; border-radius:6px; border:1px solid white;";
 
   if (badges) {
-    let html = `
+    // Exchange Verified only in #companyBadges
+    badges.innerHTML = `
       <div class="company-badges-container" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
         <div style="${verifiedBadgeStyle}">
           <img src="exchange_verified_icon.png" width="16" height="16" style="object-fit:contain;" alt="Verified">
           Exchange Verified
         </div>
-        <div class="company-badges-grid" style="display:flex; flex-wrap:wrap; gap:8px;">
+      </div>
     `;
-    if (d.veteranOwned) {
-      html += `<div style="${badgeStyle}">Veteran Owned</div>`;
-    }
-    if (d.womanOwned) {
-      html += `<div style="${badgeStyle}">Woman Owned</div>`;
-    }
-    const isMBE = d.certifications?.some(
-      (c) => c.name.includes("MBE") || c.name.includes("Minority"),
-    );
-    if (isMBE) {
-      html += `<div style="${badgeStyle}">Minority Owned</div>`;
-    }
-    html += `</div>`;
+  }
 
-    html += `</div>`;
-    badges.innerHTML = html;
+  // Ownership badges injected between #companyBadges and #keyMetrics
+  const keyMetrics = $("#keyMetrics");
+  if (keyMetrics) {
+    const ownershipBadgesHtml = (() => {
+      let pills = "";
+      if (d.veteranOwned)
+        pills += `<div style="${badgeStyle}">Veteran Owned</div>`;
+      if (d.womanOwned) pills += `<div style="${badgeStyle}">Woman Owned</div>`;
+      const isMBE = d.certifications?.some(
+        (c) => c.name.includes("MBE") || c.name.includes("Minority"),
+      );
+      if (isMBE) pills += `<div style="${badgeStyle}">Minority Owned</div>`;
+      return pills;
+    })();
+
+    if (ownershipBadgesHtml) {
+      const ownershipDiv = document.createElement("div");
+      ownershipDiv.style.cssText =
+        "display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; margin-bottom:0; justify-content:flex-start;";
+      ownershipDiv.innerHTML = ownershipBadgesHtml;
+      keyMetrics.parentNode.insertBefore(ownershipDiv, keyMetrics);
+    }
   }
 
   if (d.social?.rating) {
@@ -416,9 +437,10 @@ function renderHeader(d) {
   if (logoChips) {
     logoChips.innerHTML = logoChipsHtml;
     logoChips.style.display = "flex";
-    logoChips.style.gap = "6px";
-    logoChips.style.flexWrap = "wrap";
-    logoChips.style.marginTop = "8px";
+    logoChips.style.flexDirection = "column";
+    logoChips.style.gap = "8px";
+    logoChips.style.width = "100%";
+    logoChips.style.marginTop = "0";
   }
 
   // Remove the old companyRating rendering
@@ -675,13 +697,16 @@ function renderDocuments(d) {
   const renderDocRow = (doc) => {
     const status = doc.provided
       ? `<div style="color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></div>`
-      : `<div style="color:var(--error);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>`;
+      : ``;
+    const nameColor = doc.provided
+      ? "var(--text-primary)"
+      : "var(--text-muted)";
 
     return `
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid rgba(142, 142, 147, 0.15);">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid rgba(142, 142, 147, 0.15); opacity:${doc.provided ? "1" : "0.5"};">
         <div style="display:flex; align-items:center; gap:10px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--text-muted);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          <span style="font-size:14px; font-weight:500; color:var(--text-primary);">${doc.name}</span>
+          <span style="font-size:14px; font-weight:500; color:${nameColor};">${doc.name}</span>
         </div>
         ${status}
       </div>
@@ -1346,11 +1371,15 @@ function renderComplianceLayer(d) {
           .join("")}
       </div>
 
-      <!-- Fidelity Bond -->
-      <div style="padding:16px; background:rgba(0,113,227,0.04); border:1px solid rgba(0,113,227,0.1); border-radius:12px;">
-        <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">${bond?.type || "Fidelity Bond"}</div>
-        <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${bond?.amount || "—"}</div>
-        <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Bonded and Insured for commercial contract protection</div>
+      <!-- Fidelity Bond — centered single tile matching coverage tile style -->
+      <div style="display:flex; justify-content:center;">
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; width:calc(50% - 6px); transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">${bond?.type || "Fidelity Bond"}</span>
+          </div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${bond?.amount || "—"}</div>
+        </div>
       </div>
     </div>
   `;
@@ -1533,10 +1562,10 @@ function renderCertTiles(containerId, items) {
     return `https://icon.horse/icon/${domain}.org`;
   };
 
-  c.className = "card-list";
-  c.innerHTML = items
-    .map(
-      (item) => `
+  const industryItems = items.filter((i) => i.segment === "Industry");
+  const businessItems = items.filter((i) => i.segment === "Business");
+
+  const buildTile = (item) => `
       <div style="display:flex; align-items:center; gap:20px; padding:18px; background:var(--cert-card-bg); border-radius:14px; border:1px solid var(--cert-card-border); margin-bottom:12px; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s; cursor:default;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'; this.style.borderColor='var(--accent)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='var(--cert-card-border)';">
         <div style="width:64px; height:64px; flex-shrink:0; background:white; border:1px solid var(--border-light); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:4px;">
            <img src="${logoFor(item)}" alt="${item.name}" style="max-width:100%; max-height:100%; object-fit:contain; filter:none;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1549,9 +1578,29 @@ function renderCertTiles(containerId, items) {
           <div style="font-size:13px; color:var(--text-secondary); line-height:1.4;">${item.summary}</div>
         </div>
       </div>
-    `,
-    )
-    .join("");
+    `;
+
+  let html = "";
+  if (industryItems.length > 0) {
+    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px;">Industry</h3>`;
+    html += industryItems.map(buildTile).join("");
+  }
+  if (businessItems.length > 0) {
+    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px;">Business</h3>`;
+    html += businessItems.map(buildTile).join("");
+  }
+
+  // Fallback for any without a segment
+  const otherItems = items.filter((i) => !i.segment);
+  if (otherItems.length > 0) {
+    if (industryItems.length > 0 || businessItems.length > 0) {
+      html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px;">Other</h3>`;
+    }
+    html += otherItems.map(buildTile).join("");
+  }
+
+  c.className = "card-list";
+  c.innerHTML = html;
 }
 
 // ── Render: Associations Grid (v2) ──
