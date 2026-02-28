@@ -61,6 +61,23 @@ const companyData = {
       "Bank Branch",
       "Drugstore/Pharmacy",
       "Department Store",
+      "Airport / Transportation Hub",
+      "Hospital / Acute Care",
+      "University / Higher Education",
+      "K-12 School",
+      "Government / Municipal",
+      "Data Center",
+      "Warehouse / Logistics",
+      "Hotel / Hospitality",
+      "Senior Living / Memory Care",
+      "Sports & Recreation Facility",
+      "Convention Center",
+      "Performing Arts Venue",
+      "Retail Strip Mall",
+      "Fast Casual Restaurant",
+      "Food Processing Facility",
+      "Pharmaceutical / Lab",
+      "Urgent Care Center",
     ],
     unionLabor: "Non-Union",
   },
@@ -138,21 +155,25 @@ const companyData = {
       summary:
         "Regulatory/technical backing for chemistry, disinfection, sustainability claims.",
       logo: "aci_logo.png",
+      segment: "Industry",
     },
     {
       name: "RIA",
       summary: "Opens up higher‑margin restoration/emergency work channels.",
       logo: "https://icon.horse/icon/restorationindustry.org",
+      segment: "Industry",
     },
     {
       name: "PWNA",
       summary: "Structure and credibility for pressure‑washing services.",
       logo: "https://icon.horse/icon/pwna.org",
+      segment: "Industry",
     },
     {
       name: "IWCA",
       summary: "Safety and quality standards for a common janitorial add‑on.",
       logo: "https://icon.horse/icon/iwca.org",
+      segment: "Industry",
     },
   ],
 
@@ -664,13 +685,13 @@ function renderServices(d) {
 
   if (d.services.typesOfServices?.length) {
     html += `
-      <div style="margin-bottom: 24px;">
-        <div style="font-size:16px; font-weight:700; color:white; line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Core Capabilities</div>
+      <div style="margin-bottom: 20px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Core Capabilities</div>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
           ${d.services.typesOfServices
             .map(
               (t) =>
-                `<span class="pill" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:white;">${t}</span>`,
+                `<span class="pill" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:var(--text-primary);">${t}</span>`,
             )
             .join("")}
         </div>
@@ -680,13 +701,13 @@ function renderServices(d) {
 
   if (d.services.typesOfAccounts?.length) {
     html += `
-      <div style="margin-bottom: 24px;">
-        <div style="font-size:16px; font-weight:700; color:white; line-height:1.2; margin-bottom:12px; letter-spacing:-0.2px;">Industry Specialization</div>
+      <div>
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Industry Specialization</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
           ${d.services.typesOfAccounts
             .map(
               (t) =>
-                `<span class="pill" style="color:white; border-color:transparent;">${t}</span>`,
+                `<span class="pill" style="color:var(--text-primary); border-color:var(--border-light);">${t}</span>`,
             )
             .join("")}
         </div>
@@ -694,7 +715,64 @@ function renderServices(d) {
     `;
   }
 
-  c.innerHTML = html;
+  // Wrap in fixed-height auto-scrolling container
+  const scrollWrap = document.createElement("div");
+  scrollWrap.style.cssText = "height:280px; overflow-y:auto; padding-right:6px;";
+  scrollWrap.innerHTML = html;
+  c.innerHTML = "";
+  c.appendChild(scrollWrap);
+
+  // Thin scrollbar styling
+  scrollWrap.style.scrollbarWidth = "thin";
+
+  // Auto-scroll logic — ping-pong: scrolls down then reverses back up
+  let scrollSpeed = 0.4;
+  let scrollPos = 0;
+  let direction = 1; // 1 = down, -1 = up
+  let isPaused = false;
+  let rafId;
+
+  const autoScroll = () => {
+    if (!isPaused && scrollWrap.scrollHeight > scrollWrap.clientHeight) {
+      scrollPos += scrollSpeed * direction;
+      scrollWrap.scrollTop = scrollPos;
+
+      const maxScroll = scrollWrap.scrollHeight - scrollWrap.clientHeight;
+      if (scrollPos >= maxScroll) {
+        scrollPos = maxScroll;
+        direction = -1; // reverse: scroll back up
+      } else if (scrollPos <= 0) {
+        scrollPos = 0;
+        direction = 1; // reverse: scroll back down
+      }
+    }
+    rafId = requestAnimationFrame(autoScroll);
+  };
+
+  scrollWrap.addEventListener("mouseenter", () => (isPaused = true));
+  scrollWrap.addEventListener("mouseleave", () => {
+    scrollPos = scrollWrap.scrollTop;
+    isPaused = false;
+  });
+  scrollWrap.addEventListener("touchstart", () => (isPaused = true));
+  scrollWrap.addEventListener("touchend", () => {
+    scrollPos = scrollWrap.scrollTop;
+    isPaused = false;
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        isPaused = false;
+        scrollPos = scrollWrap.scrollTop;
+        if (!rafId) autoScroll();
+      } else {
+        isPaused = true;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      }
+    });
+  });
+  obs.observe(scrollWrap);
 }
 
 // ── Render: Documents (v2.0 — Text Rows + File Cards) ──
@@ -1170,11 +1248,11 @@ function renderTrustLayer(d) {
 
   // Icons for the trust items
   const bgCheckIcon =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" width="18" height="18" style="flex-shrink:0;"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
   const clearanceIcon =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" width="18" height="18" style="flex-shrink:0;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
   const trainingIcon =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="flex-shrink:0; color:var(--text-muted);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>';
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" width="18" height="18" style="flex-shrink:0;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>';
 
   c.innerHTML = `
     <div style="display:flex; flex-direction:column; gap:20px;">
@@ -1629,19 +1707,22 @@ function renderAssociationsGrid(containerId, items) {
   `;
 
   let html = "";
+  const sectionHeader = (label, isFirst) =>
+    `<h3 style="grid-column:1/-1; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; ${isFirst ? "margin-bottom:4px;" : "margin:16px 0 4px 0;"} color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px;">${label}</h3>`;
+
   if (industryItems.length > 0) {
-    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Industry</h3>`;
+    html += sectionHeader("Industry", true);
     html += industryItems.map(buildItem).join("");
   }
   if (businessItems.length > 0) {
-    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Business</h3>`;
+    html += sectionHeader("Business", false);
     html += businessItems.map(buildItem).join("");
   }
 
   const otherItems = items.filter((i) => !i.segment);
   if (otherItems.length > 0) {
     if (industryItems.length > 0 || businessItems.length > 0) {
-      html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Other</h3>`;
+      html += sectionHeader("Other", false);
     }
     html += otherItems.map(buildItem).join("");
   }
