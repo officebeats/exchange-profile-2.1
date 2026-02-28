@@ -194,8 +194,18 @@ body.premium-off .premium-toggle .premium-off {
   transition: all 0.3s ease;
 }
 
-body.premium-off .premium-feature {
+body.premium-off .premium-feature:not(#marketingKitBtn) {
   display: none !important;
+}
+
+body.premium-off #marketingKitBtn {
+  background: var(--pill-bg) !important;
+  color: var(--text-muted) !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  opacity: 0.6 !important;
+  filter: grayscale(100%);
 }
 
 /* Premium Upsell Logic (for specific elements like Contact Tab) */

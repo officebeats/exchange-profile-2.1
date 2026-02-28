@@ -16,7 +16,7 @@ const companyData = {
   },
 
   about:
-    "Rozalado Services delivers contract-ready janitorial and facility maintenance across 25+ miles of the Chicago metro — serving Class A buildings, medical facilities, and restaurant groups. With a 0.85 EMR, $5M umbrella coverage, and ISSA CIMS certification, we're built for prime contract compliance from day one.",
+    "Rozalado Services delivers contract-ready janitorial and facility maintenance across 25+ miles of the Chicago metro — serving Class A buildings, medical facilities, and restaurant groups. With a 0.85 EMR, $5M umbrella coverage, and ISSA CIMS certification, we're built for prime contract compliance from day one. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa!",
 
   serviceArea: { radiusMiles: 25 },
 
@@ -428,7 +428,39 @@ function renderHeader(d) {
     ratingBox.style.display = "none";
   }
 
-  $("#companyAbout").textContent = d.about;
+  const aboutEl = $("#companyAbout");
+  if (aboutEl && d.about) {
+    // Generate text plus the read more button. Let CSS handle the clamping.
+    aboutEl.innerHTML = `
+      <div class="about-text-container" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; transition: all 0.3s ease;">
+        ${d.about}
+      </div>
+      <button class="btn-read-more" style="display:block; width:100%; text-align:center; background:transparent; border:none; color:var(--accent); font-weight:600; cursor:pointer; padding:0; margin-top:12px;">Show More <svg style="display:inline-block; vertical-align:middle; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+    `;
+
+    let isExpanded = false;
+    const readMoreBtn = aboutEl.querySelector(".btn-read-more");
+    const container = aboutEl.querySelector(".about-text-container");
+
+    readMoreBtn.addEventListener("click", () => {
+      isExpanded = !isExpanded;
+      if (isExpanded) {
+        container.style.webkitLineClamp = "unset";
+        readMoreBtn.innerHTML = `Show Less <svg style="display:inline-block; vertical-align:middle; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>`;
+      } else {
+        container.style.webkitLineClamp = "4";
+        readMoreBtn.innerHTML = `Show More <svg style="display:inline-block; vertical-align:middle; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>`;
+      }
+    });
+
+    // Option: If you only want to show the button if it actually overflows...
+    // a quick check is to see if scrollHeight > clientHeight
+    setTimeout(() => {
+      if (container.scrollHeight <= container.clientHeight) {
+        readMoreBtn.style.display = "none";
+      }
+    }, 0);
+  }
 }
 
 // ── Render: Metrics ──
@@ -1605,8 +1637,8 @@ function renderContactDetailsTab(d) {
 
   c.innerHTML = `
     <div class="premium-upsell" style="height:100%;">
-      <div class="locked-contact-wrapper" style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+      <div class="locked-contact-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div style="grid-column: 1 / -1; padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
           <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
           <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
@@ -1615,11 +1647,11 @@ function renderContactDetailsTab(d) {
           <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
           <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
         </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light); overflow:hidden;">
           <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.email}</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${d.contact.email}</div>
         </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+        <div style="grid-column: 1 / -1; padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
           <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
           <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
         </div>
