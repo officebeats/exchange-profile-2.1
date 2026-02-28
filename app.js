@@ -31,11 +31,23 @@ const companyData = {
   ],
 
   contact: {
-    name: "Ricardo Rodriguez",
-    title: "Director of Sales",
+    primary: {
+      name: "Ricardo Rodriguez",
+      title: "Director of Sales",
+      phone: "(312) 877-9127",
+      email: "ricardo@rozalado.com",
+    },
+    secondary: {
+      name: "Maria Sanchez",
+      title: "Operations Manager",
+      phone: "(312) 555-0199",
+      email: "maria@rozalado.com",
+    },
+    afterHours: {
+      label: "After Hours / Emergency",
+      phone: "(312) 555-9911",
+    },
     address: "6120 North Pulaski Road, Chicago, IL 60646",
-    phone: "(312) 877-9127",
-    email: "ricardo@rozalado.com",
   },
 
   services: {
@@ -717,7 +729,8 @@ function renderServices(d) {
 
   // Wrap in fixed-height auto-scrolling container
   const scrollWrap = document.createElement("div");
-  scrollWrap.style.cssText = "height:280px; overflow-y:auto; padding-right:6px;";
+  scrollWrap.style.cssText =
+    "height:280px; overflow-y:auto; padding-right:6px;";
   scrollWrap.innerHTML = html;
   c.innerHTML = "";
   c.appendChild(scrollWrap);
@@ -768,7 +781,10 @@ function renderServices(d) {
         if (!rafId) autoScroll();
       } else {
         isPaused = true;
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
       }
     });
   });
@@ -1286,21 +1302,21 @@ function renderTrustLayer(d) {
             ${trainingIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Specialized Training</span>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${d.compliance.specializedTraining ? "Certified" : "No"}</div>
+          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
         <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${clearanceIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Security Clearance</span>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${clearance?.hasClearance ? "Active" : "None"}</div>
+          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
         <div style="grid-column: 1 / -1; background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${bgCheckIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">${bgChecks ? "Verified" : "No"}</div>
+          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
       </div>
     </div>
@@ -1806,25 +1822,49 @@ function renderContactDetailsTab(d) {
   const c = $("#heroContactDetailsContent");
   if (!c || !d.contact) return;
 
+  // Header helper
+  const labelStyle =
+    "font-size:9px; color:var(--text-muted); text-transform:uppercase; margin-bottom:2px; font-weight:700; letter-spacing:0.5px;";
+  const nameStyle =
+    "font-size:13px; font-weight:600; color:var(--text-primary); line-height:1.2;";
+  const infoStyle =
+    "font-size:11px; color:var(--text-secondary); line-height:1.2;";
+
   c.innerHTML = `
     <div class="premium-upsell" style="height:100%;">
-      <div class="locked-contact-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <div style="grid-column: 1 / -1; padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Contact</div>
-          <div style="font-size:14px; font-weight:600; color:var(--text-primary);">${d.contact.name}</div>
-          <div style="font-size:12px; color:var(--text-secondary);">${d.contact.title}</div>
+      <div class="locked-contact-wrapper" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 6px;">
+        
+        <!-- Primary -->
+        <div style="padding:10px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="${labelStyle}">Primary Contact</div>
+          <div style="${nameStyle}">${d.contact.primary.name}</div>
+          <div style="${infoStyle}">${d.contact.primary.title}</div>
+          <div style="${infoStyle}; margin-top:4px; font-weight:500; color:var(--text-primary);">${d.contact.primary.phone}</div>
         </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Phone</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary);">${d.contact.phone}</div>
+
+        <!-- Secondary -->
+        <div style="padding:10px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="${labelStyle}">Secondary Contact</div>
+          <div style="${nameStyle}">${d.contact.secondary.name}</div>
+          <div style="${infoStyle}">${d.contact.secondary.title}</div>
+          <div style="${infoStyle}; margin-top:4px; font-weight:500; color:var(--text-primary);">${d.contact.secondary.phone}</div>
         </div>
-        <div style="padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light); overflow:hidden;">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Email</div>
-          <div style="font-size:14px; font-weight:500; color:var(--text-primary); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${d.contact.email}</div>
+
+        <!-- Emergency & email (split row) -->
+        <div style="padding:10px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+           <div style="${labelStyle}">Emergency / After Hours</div>
+           <div style="font-size:13px; font-weight:700; color:#ff453a;">${d.contact.afterHours.phone}</div>
         </div>
-        <div style="grid-column: 1 / -1; padding:12px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
-          <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Address</div>
-          <div style="font-size:13px; color:var(--text-primary);">${d.contact.address}</div>
+
+        <div style="padding:10px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light); overflow:hidden;">
+          <div style="${labelStyle}">Primary Email</div>
+          <div style="font-size:12px; font-weight:500; color:var(--text-primary); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${d.contact.primary.email}</div>
+        </div>
+
+        <!-- Address -->
+        <div style="grid-column: 1 / -1; padding:10px; background:var(--pill-bg); border-radius:10px; border:1px solid var(--border-light);">
+          <div style="${labelStyle}">Address</div>
+          <div style="font-size:12px; color:var(--text-primary);">${d.contact.address}</div>
         </div>
       </div>
       <div class="premium-overlay">
