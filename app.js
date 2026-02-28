@@ -110,7 +110,7 @@ const companyData = {
       name: "ISSA",
       summary:
         "Flagship trade body for the cleaning industry; events, standards, training, and credibility with buyers worldwide.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
       segment: "Industry",
     },
     {
@@ -138,7 +138,7 @@ const companyData = {
       name: "CIRI",
       summary:
         "Differentiates you with evidence‑based “cleaning for health” story.",
-      logo: "https://icon.horse/icon/ciriscience.org",
+      logo: "https://www.google.com/s2/favicons?domain=ciriscience.org&sz=128",
       segment: "Industry",
     },
     {
@@ -152,14 +152,14 @@ const companyData = {
       name: "IICRC",
       summary:
         "Credibility and specs coverage on carpets, floors, restoration.",
-      logo: "https://icon.horse/icon/iicrc.org",
+      logo: "https://www.google.com/s2/favicons?domain=iicrc.org&sz=128",
       segment: "Industry",
     },
     {
       name: "IJCSA",
       summary:
         "Practical business resources, directory visibility, small‑firm friendly.",
-      logo: "https://icon.horse/icon/ijcsa.org",
+      logo: "https://www.google.com/s2/favicons?domain=ijcsa.org&sz=128",
       segment: "Business",
     },
     {
@@ -172,19 +172,19 @@ const companyData = {
     {
       name: "RIA",
       summary: "Opens up higher‑margin restoration/emergency work channels.",
-      logo: "https://icon.horse/icon/restorationindustry.org",
+      logo: "https://www.google.com/s2/favicons?domain=restorationindustry.org&sz=128",
       segment: "Industry",
     },
     {
       name: "PWNA",
       summary: "Structure and credibility for pressure‑washing services.",
-      logo: "https://icon.horse/icon/pwna.org",
+      logo: "https://www.google.com/s2/favicons?domain=pwna.org&sz=128",
       segment: "Industry",
     },
     {
       name: "IWCA",
       summary: "Safety and quality standards for a common janitorial add‑on.",
-      logo: "https://icon.horse/icon/iwca.org",
+      logo: "https://www.google.com/s2/favicons?domain=iwca.org&sz=128",
       segment: "Industry",
     },
   ],
@@ -1296,22 +1296,22 @@ function renderTrustLayer(d) {
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${trainingIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Specialized Training</span>
           </div>
           <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
-        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${clearanceIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Security Clearance</span>
           </div>
           <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
-        <div style="grid-column: 1 / -1; background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${bgCheckIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
