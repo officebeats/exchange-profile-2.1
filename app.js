@@ -82,48 +82,56 @@ const companyData = {
       summary:
         "Flagship trade body for the cleaning industry; events, standards, training, and credibility with buyers worldwide.",
       logo: "https://icon.horse/icon/issa.com",
+      segment: "Industry",
     },
     {
       name: "BSCAI",
       summary:
         "Dedicated to contract cleaners; peer network, best practices, and a recognized member logo you can use in marketing.",
       logo: "bscai_logo.png",
+      segment: "Industry",
     },
     {
       name: "IFMA",
       summary:
         "Access to decision‑makers, insight into how FMs evaluate and manage janitorial vendors.",
       logo: "ifma_logo.png",
+      segment: "Business",
     },
     {
       name: "BOMA",
       summary:
         "Standards and relationships right where janitorial contracts originate.",
       logo: "https://www.google.com/s2/favicons?domain=boma.org&sz=128",
+      segment: "Business",
     },
     {
       name: "CIRI",
       summary:
         "Differentiates you with evidence‑based “cleaning for health” story.",
       logo: "https://icon.horse/icon/ciriscience.org",
+      segment: "Industry",
     },
     {
       name: "IEHA (ISSA division)",
       summary:
         "Understand expectations and language of healthcare/hospitality buyers.",
       logo: "ieha_logo.png",
+      segment: "Industry",
     },
     {
       name: "IICRC",
       summary:
         "Credibility and specs coverage on carpets, floors, restoration.",
       logo: "https://icon.horse/icon/iicrc.org",
+      segment: "Industry",
     },
     {
       name: "IJCSA",
       summary:
         "Practical business resources, directory visibility, small‑firm friendly.",
       logo: "https://icon.horse/icon/ijcsa.org",
+      segment: "Business",
     },
     {
       name: "ACI",
@@ -1606,21 +1614,39 @@ function renderCertTiles(containerId, items) {
 // ── Render: Associations Grid (v2) ──
 function renderAssociationsGrid(containerId, items) {
   const c = $("#" + containerId);
-  if (!items?.length) return;
+  if (!c || !items?.length) return;
 
-  c.innerHTML = items
-    .map((item) => {
-      // Try to parse short name or acronym for the title/alt or fallback visual if no logo, but we expect item.logo to exist.
-      return `
-        <div class="logo-item" title="${item.name}">
-          <div class="logo-item__img-wrapper">
-             <img src="${item.logo}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/120x60?text=${encodeURIComponent(item.name.substring(0, 10))}';">
-          </div>
-          <div class="logo-item__label">${item.name}</div>
-        </div>
-      `;
-    })
-    .join("");
+  const industryItems = items.filter((i) => i.segment === "Industry");
+  const businessItems = items.filter((i) => i.segment === "Business");
+
+  const buildItem = (item) => `
+    <div class="logo-item" title="${item.name}">
+      <div class="logo-item__img-wrapper">
+         <img src="${item.logo}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/120x60?text=${encodeURIComponent(item.name.substring(0, 10))}';">
+      </div>
+      <div class="logo-item__label">${item.name}</div>
+    </div>
+  `;
+
+  let html = "";
+  if (industryItems.length > 0) {
+    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Industry</h3>`;
+    html += industryItems.map(buildItem).join("");
+  }
+  if (businessItems.length > 0) {
+    html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Business</h3>`;
+    html += businessItems.map(buildItem).join("");
+  }
+
+  const otherItems = items.filter((i) => !i.segment);
+  if (otherItems.length > 0) {
+    if (industryItems.length > 0 || businessItems.length > 0) {
+      html += `<h3 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:24px 0 12px 0; color:var(--text-muted); border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:6px; width:100%;">Other</h3>`;
+    }
+    html += otherItems.map(buildItem).join("");
+  }
+
+  c.innerHTML = html;
 }
 
 // ── Tabs ──
