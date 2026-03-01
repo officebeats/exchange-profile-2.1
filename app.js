@@ -690,20 +690,20 @@ function renderContact(d) {
   `;
 }
 
-// ── Render: Services (v3.0 - Categorized) ──
+// ── Render: Services (v3.1 - Categorized + Searchable) ──
 function renderServices(d) {
   const c = $("#servicesRows");
   let html = "";
 
   if (d.services.typesOfServices?.length) {
     html += `
-      <div style="margin-bottom: 20px;">
+      <div class="services-group" data-group="core" style="margin-bottom: 20px;">
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Core Capabilities</div>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
           ${d.services.typesOfServices
             .map(
               (t) =>
-                `<span class="pill" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:var(--text-primary);">${t}</span>`,
+                `<span class="pill service-pill" data-service="${t.toLowerCase()}" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:var(--text-primary);">${t}</span>`,
             )
             .join("")}
         </div>
@@ -713,13 +713,13 @@ function renderServices(d) {
 
   if (d.services.typesOfAccounts?.length) {
     html += `
-      <div>
+      <div class="services-group" data-group="industry">
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Industry Specialization</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
           ${d.services.typesOfAccounts
             .map(
               (t) =>
-                `<span class="pill" style="color:var(--text-primary); border-color:var(--border-light);">${t}</span>`,
+                `<span class="pill service-pill" data-service="${t.toLowerCase()}" style="color:var(--text-primary); border-color:var(--border-light);">${t}</span>`,
             )
             .join("")}
         </div>
@@ -743,10 +743,15 @@ function renderServices(d) {
   let scrollPos = 0;
   let direction = 1; // 1 = down, -1 = up
   let isPaused = false;
+  let isSearchActive = false;
   let rafId;
 
   const autoScroll = () => {
-    if (!isPaused && scrollWrap.scrollHeight > scrollWrap.clientHeight) {
+    if (
+      !isPaused &&
+      !isSearchActive &&
+      scrollWrap.scrollHeight > scrollWrap.clientHeight
+    ) {
       scrollPos += scrollSpeed * direction;
       scrollWrap.scrollTop = scrollPos;
 
@@ -789,6 +794,85 @@ function renderServices(d) {
     });
   });
   obs.observe(scrollWrap);
+
+  // ── Search filtering ──
+  const searchInput = $("#servicesSearchInput");
+  const clearBtn = $("#servicesSearchClear");
+  if (!searchInput || !clearBtn) return;
+
+  const allPills = scrollWrap.querySelectorAll(".service-pill");
+  const groups = scrollWrap.querySelectorAll(".services-group");
+
+  // No-results element (created once, inserted when needed)
+  const noResults = document.createElement("div");
+  noResults.className = "services-no-results";
+  noResults.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <span>No services match your search</span>
+  `;
+  noResults.style.display = "none";
+  scrollWrap.appendChild(noResults);
+
+  const filterServices = () => {
+    const query = searchInput.value.trim().toLowerCase();
+    isSearchActive = query.length > 0;
+
+    // Show/hide clear button
+    clearBtn.style.display = query.length > 0 ? "flex" : "none";
+
+    if (!query) {
+      // Reset: show all pills, remove highlights
+      allPills.forEach((pill) => {
+        pill.classList.remove("pill--hidden", "pill--highlight");
+      });
+      groups.forEach((g) => (g.style.display = ""));
+      noResults.style.display = "none";
+      scrollWrap.scrollTop = 0;
+      scrollPos = 0;
+      return;
+    }
+
+    let totalVisible = 0;
+
+    // Filter each pill
+    allPills.forEach((pill) => {
+      const text = pill.getAttribute("data-service") || "";
+      if (text.includes(query)) {
+        pill.classList.remove("pill--hidden");
+        pill.classList.add("pill--highlight");
+        totalVisible++;
+      } else {
+        pill.classList.add("pill--hidden");
+        pill.classList.remove("pill--highlight");
+      }
+    });
+
+    // Hide empty groups
+    groups.forEach((g) => {
+      const visibleInGroup = g.querySelectorAll(
+        ".service-pill:not(.pill--hidden)",
+      ).length;
+      g.style.display = visibleInGroup === 0 ? "none" : "";
+    });
+
+    // Show or hide no-results
+    noResults.style.display = totalVisible === 0 ? "flex" : "none";
+
+    // Scroll to top when filtering
+    scrollWrap.scrollTop = 0;
+    scrollPos = 0;
+  };
+
+  searchInput.addEventListener("input", filterServices);
+
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    filterServices();
+    searchInput.focus();
+  });
 }
 
 // ── Render: Documents (v2.0 — Text Rows + File Cards) ──

@@ -1995,3 +1995,116 @@ body.premium-off .video-iframe {
     font-size: 20px;
   }
 }
+
+/* ========== SERVICES SEARCH ========== */
+.services-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--pill-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 0 10px;
+  height: 36px;
+  min-width: 180px;
+  max-width: 240px;
+  transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  flex-shrink: 0;
+}
+
+.services-search-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background: var(--card-bg);
+}
+
+.services-search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.services-search-wrapper:focus-within .services-search-icon {
+  color: var(--accent);
+}
+
+.services-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 0 8px;
+  height: 100%;
+  min-width: 0;
+}
+
+.services-search-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.services-search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: var(--pill-bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.services-search-clear:hover {
+  background: var(--border-light);
+  color: var(--text-primary);
+}
+
+/* No-results state */
+.services-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+.services-no-results svg {
+  opacity: 0.4;
+}
+
+.services-no-results span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Highlight matched pill */
+.pill--highlight {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* Hidden pill during search */
+.pill--hidden {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .services-search-wrapper {
+    min-width: 0;
+    max-width: 100%;
+    flex: 1;
+  }
+}
