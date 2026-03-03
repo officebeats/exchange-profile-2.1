@@ -726,7 +726,7 @@ function renderServices(d) {
 
   // Build Segmented Control Toggle UI
   const tabsHtml = `
-    <div style="display:flex; background:rgba(255,255,255,0.05); padding:4px; border-radius:8px; margin-bottom:20px;">
+    <div style="display:flex; background:rgba(255,255,255,0.05); padding:4px; border-radius:8px; margin-bottom:20px; position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);">
       <button id="tab-accounts" style="flex:1; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:#fff; background:var(--accent); cursor:pointer; transition:all 0.2s; border:none; text-align:center;">Account Types</button>
       <button id="tab-services" style="flex:1; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:var(--text-muted); background:transparent; cursor:pointer; transition:all 0.2s; border:none; text-align:center;">Services</button>
     </div>
@@ -755,14 +755,17 @@ function renderServices(d) {
     </div>
   `;
 
-  html += tabsHtml + accountsHtml + servicesHtml;
+  html += accountsHtml + servicesHtml;
 
-  // Wrap in fixed-height container
+  // Tabs remain outside the scroll wrapper
+  c.innerHTML = tabsHtml;
+
+  // Wrap content in fixed-height container
   const scrollWrap = document.createElement("div");
   scrollWrap.style.cssText =
-    "height:320px; overflow-y:auto; padding-right:6px;";
+    "height:260px; overflow-y:auto; padding-right:6px; scrollbar-width: thin;";
   scrollWrap.innerHTML = html;
-  c.innerHTML = "";
+
   c.appendChild(scrollWrap);
 
   // Thin scrollbar styling
@@ -770,8 +773,8 @@ function renderServices(d) {
 
   // Tab Interaction Logic
   let activeTab = "accounts"; // "accounts" or "services"
-  const tabAccountsBtn = scrollWrap.querySelector("#tab-accounts");
-  const tabServicesBtn = scrollWrap.querySelector("#tab-services");
+  const tabAccountsBtn = c.querySelector("#tab-accounts");
+  const tabServicesBtn = c.querySelector("#tab-services");
   const containerAccounts = scrollWrap.querySelector("#container-accounts");
   const containerServices = scrollWrap.querySelector("#container-services");
 
@@ -1382,9 +1385,10 @@ function renderTrustLayer(d) {
 
   // EMR Score styling logic with Safety Awareness
   const emrFloat = parseFloat(emr.rate);
-  let emrColor = "var(--success)";
-  if (emrFloat > 1.0) emrColor = "#ff453a";
-  else if (emrFloat > 0.8) emrColor = "var(--warning)";
+  let emrColor = "#34c759"; // Explicit Green <= 0.95
+  if (emrFloat > 1.1)
+    emrColor = "#ff453a"; // Red > 1.1
+  else if (emrFloat > 0.95) emrColor = "#fcae17"; // Explicit Yellow 0.95 - 1.1
 
   let emrPercent = ((emrFloat - 0.5) / (1.5 - 0.5)) * 100;
   emrPercent = Math.max(0, Math.min(100, emrPercent));
