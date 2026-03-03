@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" fill="white">
+  <!-- Checkmark short left arm -->
+  <polygon points="40,105 50,95 100,145 90,155"/>
+  <!-- Checkmark long right arm -->
+  <polygon points="100,145 90,155 180,15 190,25"/>
+  <!-- X bottom-left leg -->
+  <polygon points="40,165 50,155 95,150 90,160 50,240 40,230"/>
+  <!-- X bottom-right leg -->
+  <polygon points="100,150 110,155 160,240 150,230 105,160 95,150"/>
+</svg>

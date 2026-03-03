@@ -16,7 +16,7 @@ const companyData = {
   },
 
   about:
-    "Rozalado Services delivers contract-ready janitorial and facility maintenance across 25+ miles of the Chicago metro — serving Class A buildings, medical facilities, and restaurant groups. With a 0.85 EMR, $5M umbrella coverage, and ISSA CIMS certification, we're built for prime contract compliance from day one. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa!",
+    "Rozalado Services delivers contract-ready janitorial and facility maintenance across 25+ miles of the Chicago metro — serving Class A buildings, medical facilities, and restaurant groups. With a 0.85 EMR, $5M umbrella coverage, and ISSA CIMS certification, we're built for prime contract compliance from day one.",
 
   serviceArea: { radiusMiles: 25 },
 
@@ -152,7 +152,7 @@ const companyData = {
       name: "IICRC",
       summary:
         "Credibility and specs coverage on carpets, floors, restoration.",
-      logo: "https://www.google.com/s2/favicons?domain=iicrc.org&sz=128",
+      logo: "iicrc_logo.png",
       segment: "Industry",
     },
     {
@@ -184,7 +184,7 @@ const companyData = {
     {
       name: "IWCA",
       summary: "Safety and quality standards for a common janitorial add‑on.",
-      logo: "https://www.google.com/s2/favicons?domain=iwca.org&sz=128",
+      logo: "iwca_logo.png",
       segment: "Industry",
     },
   ],
@@ -212,14 +212,14 @@ const companyData = {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
       segment: "Industry",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
       segment: "Industry",
     },
   ],
@@ -274,11 +274,10 @@ const companyData = {
     reviewCount: 142,
   },
   socialMedia: {
-    linkedin: "https://linkedin.com",
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
-    twitter: "https://twitter.com",
-    tiktok: "https://tiktok.com",
+    linkedin: "https://www.linkedin.com/company/rozalado-services/",
+    instagram: "https://www.instagram.com/rozalado_services/",
+    facebook: "https://www.facebook.com/RozaladoServices/",
+    tiktok: "https://www.tiktok.com/@rozaladoservices",
   },
   video: {
     url: "https://www.youtube.com/embed/hm2-33GIQJA?rel=0&modestbranding=1",
@@ -362,12 +361,6 @@ const companyData = {
         "They are one of the best in the industry. Offer great carpet cleaning services. On time and great prices. They are highly recommended.",
     },
   ],
-  socialMedia: {
-    linkedin: "https://www.linkedin.com/company/rozalado-services/",
-    instagram: "https://www.instagram.com/rozalado_services/",
-    facebook: "https://www.facebook.com/RozaladoServices/",
-    tiktok: "https://www.tiktok.com/@rozaladoservices",
-  },
   websiteUrl: "https://rozalado.com",
   drip: {
     enabled: true,
@@ -408,10 +401,17 @@ function renderHeader(d) {
   logo.style.border = "1px solid var(--border-light)";
   logo.style.borderRadius = "12px";
   logo.style.overflow = "hidden";
-  logo.style.padding = "12px";
-  logo.innerHTML = `
-    <img src="https://rozaladocleaning.com/wp-content/uploads/2017/12/rozalado-logo-header-small.svg" alt="Rozalado Logo" style="width:100%; height:100%; object-fit:contain;">
-  `;
+  logo.style.padding = "2px";
+  logo.innerHTML = `<svg width="110" height="110" viewBox="80 80 340 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%; height:90%;">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M303.493 250.771C303.493 282.88 277.468 308.905 245.358 308.905C213.249 308.905 187.225 282.88 187.225 250.771C187.225 218.662 213.249 192.637 245.358 192.637C277.468 192.637 303.493 218.662 303.493 250.771ZM344.208 250.771C344.208 305.365 299.951 349.622 245.358 349.622C190.765 349.622 146.508 305.365 146.508 250.771C146.508 196.177 190.765 151.921 245.358 151.921C299.951 151.921 344.208 196.177 344.208 250.771Z" fill="#2563EB"/>
+    <path d="M260.672 250.771L214.331 169.414" stroke="#2563EB" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M260.672 250.771L214.331 332.128" stroke="#2563EB" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M230.045 250.771L322.724 250.771" stroke="#2563EB" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span style="font-weight:900; text-align:center; line-height:1; font-size:10px; color:#2563EB; margin-top:-5px;">${d.logoText.replace(
+    "\n",
+    "<br>",
+  )}</span>`;
 
   $("#companyName").textContent = d.name;
 
@@ -690,47 +690,77 @@ function renderContact(d) {
   `;
 }
 
-// ── Render: Services (v3.1 - Categorized + Searchable) ──
+// ── Render: Services (v3.2 - Dictionary Mapped with Search) ──
 function renderServices(d) {
   const c = $("#servicesRows");
   let html = "";
 
-  if (d.services.typesOfServices?.length) {
-    html += `
-      <div class="services-group" data-group="core" style="margin-bottom: 20px;">
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Core Capabilities</div>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          ${d.services.typesOfServices
-            .map(
-              (t) =>
-                `<span class="pill service-pill" data-service="${t.toLowerCase()}" style="font-weight:600; padding:6px 14px; background:var(--pill-bg); color:var(--text-primary);">${t}</span>`,
-            )
-            .join("")}
-        </div>
-      </div>
-    `;
-  }
+  const renderGroup = (
+    title,
+    dataDict,
+    rootStyle = "",
+    pillStyle = "color:var(--text-primary); border-color:var(--border-light);",
+  ) => {
+    if (!dataDict || Object.keys(dataDict).length === 0) return "";
+    let groupHtml = `<div class="services-group" style="margin-bottom: 24px; ${rootStyle}">`;
+    groupHtml += `<div style="font-size:16px; font-weight:800; letter-spacing:-0.2px; color:white; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">${title}</div>`;
 
-  if (d.services.typesOfAccounts?.length) {
-    html += `
-      <div class="services-group" data-group="industry">
-        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">Industry Specialization</div>
-        <div style="display:flex; flex-wrap:wrap; gap:6px;">
-          ${d.services.typesOfAccounts
-            .map(
-              (t) =>
-                `<span class="pill service-pill" data-service="${t.toLowerCase()}" style="color:var(--text-primary); border-color:var(--border-light);">${t}</span>`,
-            )
-            .join("")}
+    for (const [parentCategory, childPills] of Object.entries(dataDict)) {
+      groupHtml += `
+        <div class="service-category" style="margin-bottom: 16px;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px;">${parentCategory}</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            ${childPills
+              .map(
+                (t) =>
+                  `<span class="pill service-pill" data-service="${t.toLowerCase()}" style="${pillStyle}">${t}</span>`,
+              )
+              .join("")}
+          </div>
         </div>
-      </div>
-    `;
-  }
+      `;
+    }
+    groupHtml += `</div>`;
+    return groupHtml;
+  };
 
-  // Wrap in fixed-height auto-scrolling container
+  // Build Segmented Control Toggle UI
+  const tabsHtml = `
+    <div style="display:flex; background:rgba(255,255,255,0.05); padding:4px; border-radius:8px; margin-bottom:20px;">
+      <button id="tab-accounts" style="flex:1; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:#fff; background:var(--accent); cursor:pointer; transition:all 0.2s; border:none; text-align:center;">Account Types</button>
+      <button id="tab-services" style="flex:1; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:var(--text-muted); background:transparent; cursor:pointer; transition:all 0.2s; border:none; text-align:center;">Services</button>
+    </div>
+  `;
+
+  // Render both groups into distinct wrapper containers (id logic)
+  const accountsHtml = `
+    <div id="container-accounts" style="display:block;">
+      ${renderGroup(
+        "Account Types",
+        d.services.accountTypes,
+        "",
+        "background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-primary);",
+      )}
+    </div>
+  `;
+
+  const servicesHtml = `
+    <div id="container-services" style="display:none;">
+      ${renderGroup(
+        "Services",
+        d.services.serviceTypes,
+        "margin-top: 12px;",
+        "background: rgba(255,255,255,0.06); color: #fff; font-weight: 500; border: 1px solid transparent;",
+      )}
+    </div>
+  `;
+
+  html += tabsHtml + accountsHtml + servicesHtml;
+
+  // Wrap in fixed-height container
   const scrollWrap = document.createElement("div");
   scrollWrap.style.cssText =
-    "height:280px; overflow-y:auto; padding-right:6px;";
+    "height:320px; overflow-y:auto; padding-right:6px;";
   scrollWrap.innerHTML = html;
   c.innerHTML = "";
   c.appendChild(scrollWrap);
@@ -738,62 +768,62 @@ function renderServices(d) {
   // Thin scrollbar styling
   scrollWrap.style.scrollbarWidth = "thin";
 
-  // Auto-scroll logic — ping-pong: scrolls down then reverses back up
-  let scrollSpeed = 0.4;
-  let scrollPos = 0;
-  let direction = 1; // 1 = down, -1 = up
-  let isPaused = false;
-  let isSearchActive = false;
-  let rafId;
+  // Tab Interaction Logic
+  let activeTab = "accounts"; // "accounts" or "services"
+  const tabAccountsBtn = scrollWrap.querySelector("#tab-accounts");
+  const tabServicesBtn = scrollWrap.querySelector("#tab-services");
+  const containerAccounts = scrollWrap.querySelector("#container-accounts");
+  const containerServices = scrollWrap.querySelector("#container-services");
 
-  const autoScroll = () => {
-    if (
-      !isPaused &&
-      !isSearchActive &&
-      scrollWrap.scrollHeight > scrollWrap.clientHeight
-    ) {
-      scrollPos += scrollSpeed * direction;
-      scrollWrap.scrollTop = scrollPos;
-
-      const maxScroll = scrollWrap.scrollHeight - scrollWrap.clientHeight;
-      if (scrollPos >= maxScroll) {
-        scrollPos = maxScroll;
-        direction = -1; // reverse: scroll back up
-      } else if (scrollPos <= 0) {
-        scrollPos = 0;
-        direction = 1; // reverse: scroll back down
-      }
+  const updateTabs = () => {
+    if (activeTab === "accounts") {
+      tabAccountsBtn.style.background = "var(--accent)";
+      tabAccountsBtn.style.color = "#fff";
+      tabServicesBtn.style.background = "transparent";
+      tabServicesBtn.style.color = "var(--text-muted)";
+      containerAccounts.style.display = "block";
+      containerServices.style.display = "none";
+    } else {
+      tabAccountsBtn.style.background = "transparent";
+      tabAccountsBtn.style.color = "var(--text-muted)";
+      tabServicesBtn.style.background = "var(--accent)";
+      tabServicesBtn.style.color = "#fff";
+      containerAccounts.style.display = "none";
+      containerServices.style.display = "block";
     }
-    rafId = requestAnimationFrame(autoScroll);
+    // ensure search handles display transition appropriately
+    if (searchInput.value.trim() !== "") {
+      filterServices();
+    }
   };
 
-  scrollWrap.addEventListener("mouseenter", () => (isPaused = true));
-  scrollWrap.addEventListener("mouseleave", () => {
-    scrollPos = scrollWrap.scrollTop;
-    isPaused = false;
+  tabAccountsBtn.addEventListener("click", () => {
+    if (activeTab !== "accounts") {
+      activeTab = "accounts";
+      updateTabs();
+    }
   });
-  scrollWrap.addEventListener("touchstart", () => (isPaused = true));
-  scrollWrap.addEventListener("touchend", () => {
-    scrollPos = scrollWrap.scrollTop;
-    isPaused = false;
+  tabAccountsBtn.addEventListener("mouseenter", () => {
+    if (activeTab !== "accounts") tabAccountsBtn.style.color = "#fff";
+  });
+  tabAccountsBtn.addEventListener("mouseleave", () => {
+    if (activeTab !== "accounts")
+      tabAccountsBtn.style.color = "var(--text-muted)";
   });
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        isPaused = false;
-        scrollPos = scrollWrap.scrollTop;
-        if (!rafId) autoScroll();
-      } else {
-        isPaused = true;
-        if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
-        }
-      }
-    });
+  tabServicesBtn.addEventListener("click", () => {
+    if (activeTab !== "services") {
+      activeTab = "services";
+      updateTabs();
+    }
   });
-  obs.observe(scrollWrap);
+  tabServicesBtn.addEventListener("mouseenter", () => {
+    if (activeTab !== "services") tabServicesBtn.style.color = "#fff";
+  });
+  tabServicesBtn.addEventListener("mouseleave", () => {
+    if (activeTab !== "services")
+      tabServicesBtn.style.color = "var(--text-muted)";
+  });
 
   // ── Search filtering ──
   const searchInput = $("#servicesSearchInput");
@@ -801,9 +831,10 @@ function renderServices(d) {
   if (!searchInput || !clearBtn) return;
 
   const allPills = scrollWrap.querySelectorAll(".service-pill");
-  const groups = scrollWrap.querySelectorAll(".services-group");
+  const groups = scrollWrap.querySelectorAll(".service-category");
+  const rootGroups = scrollWrap.querySelectorAll(".services-group");
 
-  // No-results element (created once, inserted when needed)
+  // No-results element
   const noResults = document.createElement("div");
   noResults.className = "services-no-results";
   noResults.innerHTML = `
@@ -818,20 +849,18 @@ function renderServices(d) {
 
   const filterServices = () => {
     const query = searchInput.value.trim().toLowerCase();
-    isSearchActive = query.length > 0;
 
     // Show/hide clear button
     clearBtn.style.display = query.length > 0 ? "flex" : "none";
 
     if (!query) {
-      // Reset: show all pills, remove highlights
       allPills.forEach((pill) => {
         pill.classList.remove("pill--hidden", "pill--highlight");
       });
       groups.forEach((g) => (g.style.display = ""));
+      rootGroups.forEach((g) => (g.style.display = ""));
       noResults.style.display = "none";
       scrollWrap.scrollTop = 0;
-      scrollPos = 0;
       return;
     }
 
@@ -850,7 +879,7 @@ function renderServices(d) {
       }
     });
 
-    // Hide empty groups
+    // Hide empty sub-categories
     groups.forEach((g) => {
       const visibleInGroup = g.querySelectorAll(
         ".service-pill:not(.pill--hidden)",
@@ -858,14 +887,20 @@ function renderServices(d) {
       g.style.display = visibleInGroup === 0 ? "none" : "";
     });
 
+    // Hide root headers if entire dictionary tree is empty
+    rootGroups.forEach((g) => {
+      const visibleInRoot = g.querySelectorAll(
+        ".service-pill:not(.pill--hidden)",
+      ).length;
+      g.style.display = visibleInRoot === 0 ? "none" : "";
+    });
+
     // Show or hide no-results
     noResults.style.display = totalVisible === 0 ? "flex" : "none";
 
     // Scroll to top when filtering
     scrollWrap.scrollTop = 0;
-    scrollPos = 0;
   };
-
   searchInput.addEventListener("input", filterServices);
 
   clearBtn.addEventListener("click", () => {
@@ -1297,56 +1332,63 @@ function renderTestimonialsTab(d) {
 // ── Render: Featured Video (Hero) ──
 function renderVideo(d) {
   const c = document.getElementById("heroVideoContainer");
-  if (!c || !d.video) return;
+  if (!c) return;
 
-  const getAutoplayUrl = (url) => {
-    let newUrl = url;
-    if (newUrl.includes("?")) newUrl += "&autoplay=1&loop=1&enablejsapi=1";
-    else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
-    return newUrl;
-  };
-  const getThumbnail = (url) => {
-    const match = url.match(/embed\/([^?]+)/);
-    return match
-      ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`
-      : "https://placehold.co/800x450/111827/3b82f6?text=About+Us";
-  };
+  const isYouTube =
+    d.video?.url?.includes("youtube.com") || d.video?.url?.includes("youtu.be");
 
-  const thumbUrl = getThumbnail(d.video.url);
-
-  c.innerHTML = `
-    <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
-      <iframe class="video-iframe" id="heroVideoIframe" src="${getAutoplayUrl(d.video.url)}" 
-        title="${d.video.title}" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        style="width:100%; height:100%; flex:1;"
-        allowfullscreen>
-      </iframe>
-      <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=1200&q=80" alt="Rozalado Professional Team" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
+  if (isYouTube) {
+    c.innerHTML = `
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
+        <iframe 
+          id="companyVideo"
+          src="${d.video.url}" 
+          title="${d.video.title}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen
+          style="width:100%; height:100%; flex:1; border:none; border-radius:inherit;">
+        </iframe>
       </div>
-    </div>
-  `;
+    `;
+  } else {
+    c.innerHTML = `
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
+        <video
+          src="${d.video.url || "media/Lumina-intro.mp4"}"
+          controls
+          autoplay
+          muted
+          loop
+          playsinline
+          style="width:100%; height:100%; flex:1; object-fit:cover; background:#000;"
+          title="${d.video.title || "Company Overview"}"
+          id="companyVideo"
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    `;
+  }
 }
 
-// ── Render: Trust & Safety (v2.1 — EMR + Background Checks + Security Clearance + Training) ──
+// ── Render: Trust & Safety (v2.2 — EMR + Alignment Refinements) ──
+// ── Render: Trust & Safety (v2.2 — Typography & Color Standardization) ──
 function renderTrustLayer(d) {
   const c = $("#trustContent");
   if (!c || !d.compliance) return;
 
   const emr = d.compliance.emr[0];
-  const bgChecks = d.compliance.backgroundChecks;
-  const clearance = d.compliance.securityClearance;
 
-  // EMR Score styling logic
+  // EMR Score styling logic with Safety Awareness
   const emrFloat = parseFloat(emr.rate);
-  const emrColor = emrFloat <= 1.0 ? "var(--success)" : "var(--error)";
-  // Map 0.5 - 1.5 to 0% - 100% position
+  let emrColor = "var(--success)";
+  if (emrFloat > 1.0) emrColor = "#ff453a";
+  else if (emrFloat > 0.8) emrColor = "var(--warning)";
+
   let emrPercent = ((emrFloat - 0.5) / (1.5 - 0.5)) * 100;
   emrPercent = Math.max(0, Math.min(100, emrPercent));
 
-  // Icons for the trust items
   const bgCheckIcon =
     '<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" width="18" height="18" style="flex-shrink:0;"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
   const clearanceIcon =
@@ -1356,51 +1398,64 @@ function renderTrustLayer(d) {
 
   c.innerHTML = `
     <div style="display:flex; flex-direction:column; gap:20px;">
-      <!-- Safety Benchmark -->
+      <!-- Safety Benchmark Card -->
       <div style="background:var(--pill-bg); padding:16px; border-radius:12px; border:1px solid var(--border-light);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
           <div>
-            <div style="font-size:16px; font-weight:700; color:white; line-height:1.2; margin-bottom:4px; letter-spacing:-0.2px;">Safety Benchmark</div>
+            <div style="font-size:16px; font-weight:700; color:white; line-height:1.2; margin-bottom:4px; letter-spacing:-0.2px; display:flex; align-items:center; gap:6px;">
+              Safety Benchmark
+              <div class="emr-tooltip-container">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" style="color:var(--text-muted);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <div class="emr-tooltip-text">
+                  <strong>EMR Safety Rating</strong><br><br>
+                  An Experience Modification Rate (EMR) is used by insurance companies to gauge past cost of injuries and future chances of risk. <br><br>
+                  &bull; <strong>1.0</strong> is the industry average.<br>
+                  &bull; <strong>Below 1.0</strong> indicates a safer than average record.<br>
+                  &bull; <strong>Above 1.0</strong> indicates a higher risk record.
+                </div>
+              </div>
+            </div>
             <div style="font-size:13px; color:var(--text-secondary);">Industry average is 1.0</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:24px; font-weight:800; color:${emrColor}; letter-spacing:-0.5px; line-height:1;">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
+            <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1; color: ${emrColor};">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
           </div>
         </div>
-        
-        <!-- EMR Bar Component -->
         <div style="position:relative; width:100%; height:8px; background:linear-gradient(to right, #34c759 40%, #ffcc00 60%, #ff3b30 100%); border-radius:4px; margin-top:16px;">
           <div style="position:absolute; top:-4px; left:${emrPercent}%; transform:translateX(-50%); width:4px; height:16px; background:#000; border-radius:2px; z-index:2; border:1px solid #fff;"></div>
           <div style="position:absolute; top:-2px; left:50%; width:2px; height:12px; background:rgba(0,0,0,0.2); z-index:1;"></div>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:var(--text-muted); font-weight:600;">
-          <span>High (0.5)</span>
-          <span>Industry Avg (1.0)</span>
-          <span>Low (1.5)</span>
+        <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">
+          <span style="color:var(--success);">High SAFETY (0.5)</span>
+          <span style="color:var(--text-muted);">Industry Avg (1.0)</span>
+          <span style="color:#ff453a;">Low SAFETY (1.5)</span>
         </div>
       </div>
 
-      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+      <!-- Trust Factor Tiles (Matching Compliance Typography) -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${trainingIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Specialized Training</span>
           </div>
-          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
         </div>
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${clearanceIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Security Clearance</span>
           </div>
-          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
         </div>
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
-          <div style="display:flex; align-items:center; gap:8px;">
-            ${bgCheckIcon}
-            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
+        <div style="grid-column: span 2; display:flex; justify-content:center;">
+          <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; width:calc(50% - 6px); transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+            <div style="display:flex; align-items:center; gap:8px;">
+              ${bgCheckIcon}
+              <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
+            </div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
           </div>
-          <div style="font-size:24px; font-weight:800; color:var(--success); letter-spacing:-0.4px; line-height:1;">YES</div>
         </div>
       </div>
     </div>

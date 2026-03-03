@@ -195,7 +195,10 @@ body.premium-off .premium-toggle .premium-off {
 }
 
 body.premium-off .premium-feature:not(#marketingKitBtn) {
-  display: none !important;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
 }
 
 body.premium-off #marketingKitBtn {
@@ -596,7 +599,7 @@ body.premium-off .locked-contact-wrapper {
 }
 
 body.premium-off .tabs-nav {
-  grid-template-columns: repeat(4, 1fr);
+  /* Inherit default grid-template-columns: repeat(3, 1fr); so it stays 2 rows of 3 */
 }
 
 .tab-btn {
@@ -997,6 +1000,17 @@ body:not(.premium-off) .tab-btn.premium-feature.active {
   letter-spacing: 0.05em;
   color: var(--text-muted);
 }
+
+/* Safety Awareness Coloring */
+.safety-excellent {
+  color: var(--success) !important;
+}
+.safety-good {
+  color: var(--warning) !important;
+}
+.safety-poor {
+  color: #ff453a !important;
+} /* High-contrast red */
 
 .emr-gauge__bar {
   width: 120px;
@@ -2140,4 +2154,53 @@ body.premium-off .video-iframe {
   .services-search-wrapper:focus-within {
     max-width: 100%;
   }
+}
+
+/* EMR Tooltip */
+.emr-tooltip-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+  margin-left: 6px;
+}
+
+.emr-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 280px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  text-align: left;
+  border-radius: 8px;
+  padding: 12px;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.emr-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--card-border) transparent transparent transparent;
+}
+
+.emr-tooltip-container:hover .emr-tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
